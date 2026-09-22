@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pindari Enterprises - Workforce & Salary Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pindariRed: '#D32F2F',
+                        pindariDark: '#0B192C',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+
+    <!-- Top Bar -->
+    <header class="bg-pindariDark text-white border-b-2 border-pindariRed">
+        <div class="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center text-xs">
+            <div class="flex items-center space-x-4">
+                <span><i class="fa fa-phone text-pindariRed mr-1"></i> +91 98765 43210</span>
+                <span class="hidden md:inline"><i class="fa fa-envelope text-pindariRed mr-1"></i> support@pindarienterprises.com</span>
+            </div>
+            <div class="flex items-center space-x-3">
+                <label for="langSelect" class="text-xs text-gray-300" data-i18n="selectLang">Language:</label>
+                <select id="langSelect" onchange="changeLanguage(this.value)" class="bg-gray-800 text-white text-xs px-2 py-1 rounded border border-gray-600 focus:outline-none">
+                    <option value="en">English</option>
+                    <option value="hi">हिंदी (Hindi)</option>
+                    <option value="mr">मराठी (Marathi)</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation & Pindari Branding Header -->
+    <nav class="bg-white shadow-md sticky top-0 z-50 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 bg-pindariRed rounded-full flex items-center justify-center text-white font-black text-xl shadow-lg border-2 border-pindariDark">
+                    PE
+                </div>
+                <div>
+                    <h1 class="text-xl font-black tracking-wider text-pindariRed">PINDARI</h1>
+                    <p class="text-[9px] tracking-widest text-pindariDark font-bold uppercase">Enterprises</p>
+                </div>
+            </div>
+            <div class="hidden md:flex items-center space-x-6 text-xs font-bold text-gray-600 uppercase tracking-wider">
+                <span><i class="fa fa-check-circle text-pindariRed mr-1"></i> Trusted Partner</span>
+                <span><i class="fa fa-globe text-pindariRed mr-1"></i> Pan India</span>
+            </div>
+            <div id="userProfileBadge" class="hidden flex items-center space-x-3">
+                <span id="loggedInUserText" class="text-xs font-bold bg-red-50 text-pindariRed px-3 py-1.5 rounded-lg border border-red-200"></span>
+                <button onclick="logout()" class="bg-pindariDark text-white px-3 py-1.5 rounded-lg text-xs font-bold hover:bg-gray-800 transition">
+                    <i class="fa fa-sign-out-alt mr-1"></i> <span data-i18n="logout">Logout</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 py-8">
+
+        <!-- 1. LOGIN / AUTHENTICATION SECTION (WhatsApp OTP) -->
+        <section id="authSection" class="max-w-md mx-auto bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200 my-4">
+            <div class="bg-pindariDark text-white p-6 text-center relative">
+                <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 w-16 h-16 bg-pindariRed rounded-full border-4 border-white flex items-center justify-center text-2xl font-bold shadow-md">
+                    PE
+                </div>
+                <h2 class="text-xl font-bold mt-6" data-i18n="loginTitle">Portal Login</h2>
+                <p class="text-[11px] text-gray-300 mt-1 uppercase tracking-wider" data-i18n="loginSub">Trusted Manpower Supply Partner</p>
+            </div>
+
+            <div class="p-6 space-y-4">
+                <!-- Role Selection -->
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1" data-i18n="selectRole">Select Role</label>
+                    <select id="loginRole" class="w-full p-3 border rounded-xl bg-gray-50 focus:ring-2 focus:ring-pindariRed focus:outline-none text-sm font-medium">
+                        <option value="admin">Admin / Management</option>
+                        <option value="employer">Employer / Partner</option>
+                        <option value="employee">Employee / Teacher</option>
+                    </select>
+                </div>
+
+                <!-- Phone / WhatsApp Number -->
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1" data-i18n="whatsappLabel">WhatsApp / Phone Number</label>
+                    <div class="flex">
+                        <span class="bg-gray-100 border border-r-0 rounded-l-xl px-3 flex items-center text-sm font-semibold text-gray-600">+91</span>
+                        <input type="tel" id="phoneNumber" placeholder="Enter 10-digit mobile number" maxlength="10" class="w-full p-3 border rounded-r-xl bg-gray-50 focus:ring-2 focus:ring-pindariRed focus:outline-none text-sm">
+                    </div>
+                </div>
+
+                <!-- OTP Input Area -->
+                <div id="otpBoxContainer" class="hidden space-y-3 pt-2">
+                    <div class="bg-green-50 border border-green-200 text-green-800 text-xs p-3 rounded-lg flex items-center">
+                        <i class="fab fa-whatsapp text-green-600 text-lg mr-2"></i>
+                        <span data-i18n="otpSentMsg">OTP sent to WhatsApp! (Demo OTP: 1234)</span>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-600 uppercase mb-1" data-i18n="enterOtp">Enter 4-Digit OTP</label>
+                        <input type="text" id="otpInput" placeholder="1234" maxlength="4" class="w-full p-3 border rounded-xl bg-gray-50 text-center tracking-widest text-lg font-bold focus:ring-2 focus:ring-pindariRed focus:outline-none">
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <button id="sendOtpBtn" onclick="sendWhatsAppOTP()" class="w-full bg-pindariRed text-white py-3 rounded-xl font-bold hover:bg-red-700 transition shadow-md flex items-center justify-center space-x-2">
+                    <i class="fab fa-whatsapp text-xl"></i>
+                    <span data-i18n="sendOtpBtnText">Get WhatsApp OTP</span>
+                </button>
+
+                <button id="verifyOtpBtn" onclick="verifyOTP()" class="hidden w-full bg-green-600 text-white py-3 rounded-xl font-bold hover:bg-green-700 transition shadow-md">
+                    <span data-i18n="verifyLoginBtn">Verify & Login</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- 2. DASHBOARD SECTION -->
+        <section id="dashboardSection" class="hidden space-y-6">
+            <!-- Welcome Banner -->
+            <div class="bg-gradient-to-r from-pindariDark to-gray-900 text-white p-6 rounded-2xl shadow-lg flex flex-col md:flex-row justify-between items-center border-l-4 border-pindariRed">
+                <div>
+                    <h2 class="text-2xl font-bold"><span data-i18n="welcome">Welcome</span>, <span id="userRoleDisplay" class="text-pindariRed uppercase"></span>!</h2>
+                    <p class="text-xs text-gray-300 mt-1" data-i18n="dashSub">Managing workforce payroll, joining dates and profiles efficiently.</p>
+                </div>
+                <div class="mt-4 md:mt-0 bg-white/10 px-4 py-2 rounded-xl backdrop-blur border border-white/20 text-xs">
+                    <i class="fa fa-calendar-alt text-pindariRed mr-1"></i> <span id="currentDate"></span>
+                </div>
+            </div>
+
+            <!-- Admin / Employer Controls (Add Workforce Record) -->
+            <div id="adminControls" class="bg-white p-6 rounded-2xl shadow-md border border-gray-200">
+                <h3 class="text-lg font-bold text-gray-800 mb-4 border-b pb-2 flex items-center">
+                    <i class="fa fa-user-plus text-pindariRed mr-2"></i> <span data-i18n="addRecordTitle">Add Workforce & Salary Record</span>
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-600 mb-1" data-i18n="tName">Employee / Teacher Name</label>
+                        <input type="text" id="tName" placeholder="e.g. Rajesh Kumar" class="w-full p-2.5 border rounded-lg text-sm bg-gray-50 focus:outline-none focus:ring-2 focus:ring-pindariRed">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-600 mb-1" data-i18n="tProfile">Profile / Designation</label>
+                        <select id="tProfile" class="w-full p-2.5 border rounded-lg text-sm bg-gray-50 focus:outline-none focus:ring-2 focus:ring-pindariRed">
+                            <option value="PGT Teacher">PGT Teacher</option>
+                            <option value="TGT Teacher">TGT Teacher</option>
+                            <option value="Primary Teacher">Primary Teacher</option>
+                            <option value="Guest Faculty">Guest Faculty</option>
+                            <option value="Administrative Staff">Administrative Staff</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-600 mb-1" data-i18n="tSubject">Department / Subject</label>
+                        <input type="text" id="tSubject" placeholder="e.g. Mathematics" class="w-full p-2.5 border rounded-lg text-sm bg-gray-50 focus:outline-none focus:ring-2 focus:ring-pindariRed">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-600 mb-1" data-i18n="tJoinDate">Joining Date</label>
+                        <input type="date" id="tJoinDate" class="w-full p-2.5 border rounded-lg text-sm bg-gray-50 focus:outline-none focus:ring-2 focus:ring-pindariRed">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-600 mb-1" data-i18n="tBasic">Basic Salary (₹)</label>
+                        <input type="number" id="tBasic" placeholder="45000" class="w-full p-2.5 border rounded-lg text-sm bg-gray-50 focus:outline-none focus:ring-2 focus:ring-pindariRed">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-600 mb-1" data-i18n="tBonus">Bonus / Allowance (₹)</label>
+                        <input type="number" id="tBonus" placeholder="5000" class="w-full p-2.5 border rounded-lg text-sm bg-gray-50 focus:outline-none focus:ring-2 focus:ring-pindariRed">
+                    </div>
+                </div>
+                <div class="mt-4 text-right">
+                    <button onclick="saveRecord()" class="bg-pindariRed text-white px-6 py-2.5 rounded-xl text-sm font-bold hover:bg-red-700 transition shadow">
+                        <i class="fa fa-save mr-1"></i> <span data-i18n="saveRecordBtn">Save Payment Record</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Records Directory Table -->
+            <div class="bg-white rounded-2xl shadow-md border border-gray-200 overflow-hidden">
+                <div class="p-4 bg-gray-50 border-b flex justify-between items-center">
+                    <h3 class="font-bold text-gray-800 text-sm md:text-base flex items-center">
+                        <i class="fa fa-list-alt text-pindariRed mr-2"></i> <span data-i18n="recordsTableTitle">Workforce & Salary Directory</span>
+                    </h3>
+                    <span id="recordCount" class="text-xs bg-pindariDark text-white px-3 py-1 rounded-full font-semibold">0 Records</span>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-gray-100 text-gray-600 text-xs uppercase tracking-wider">
+                                <th class="p-3" data-i18n="thName">Name</th>
+                                <th class="p-3" data-i18n="thProfile">Profile</th>
+                                <th class="p-3" data-i18n="thSubject">Department</th>
+                                <th class="p-3" data-i18n="thJoin">Joining Date</th>
+                                <th class="p-3" data-i18n="thBasic">Basic (₹)</th>
+                                <th class="p-3" data-i18n="thBonus">Bonus (₹)</th>
+                                <th class="p-3" data-i18n="thTotal">Total (₹)</th>
+                                <th class="p-3 text-center" id="actionHeader" data-i18n="thAction">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="salaryTableBody" class="divide-y divide-gray-200 text-sm">
+                            <!-- Dynamic rows -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Pindari Footer -->
+    <footer class="bg-pindariDark text-gray-400 mt-16 py-8 border-t border-red-600 text-xs">
+        <div class="max-w-7xl mx-auto px-4 text-center space-y-2">
+            <p class="text-white font-black tracking-wider uppercase">Pindari Enterprises - Trusted Manpower Supply Partner</p>
+            <p class="text-pindariRed font-bold tracking-widest">CONNECTING TALENT. BUILDING NATION.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        const translations = {
+            en: {
+                selectLang: "Language:",
+                logout: "Logout",
+                loginTitle: "Portal Login",
+                loginSub: "Trusted Manpower Supply Partner",
+                selectRole: "Select Role",
+                whatsappLabel: "WhatsApp / Phone Number",
+                otpSentMsg: "OTP sent to WhatsApp! (Demo OTP: 1234)",
+                enterOtp: "Enter 4-Digit OTP",
+                sendOtpBtnText: "Get WhatsApp OTP",
+                verifyLoginBtn: "Verify & Login",
+                welcome: "Welcome",
+                dashSub: "Managing workforce payroll, joining dates and profiles efficiently.",
+                addRecordTitle: "Add Workforce & Salary Record",
+                tName: "Employee / Teacher Name",
+                tProfile: "Profile / Designation",
+                tSubject: "Department / Subject",
+                tJoinDate: "Joining Date",
+                tBasic: "Basic Salary (₹)",
+                tBonus: "Bonus / Allowance (₹)",
+                saveRecordBtn: "Save Payment Record",
+                recordsTableTitle: "Workforce & Salary Directory",
+                thName: "Name",
+                thProfile: "Profile",
+                thSubject: "Department",
+                thJoin: "Joining Date",
+                thBasic: "Basic (₹)",
+                thBonus: "Bonus (₹)",
+                thTotal: "Total (₹)",
+                thAction: "Action"
+            },
+            hi: {
+                selectLang: "भाषा:",
+                logout: "लॉग आउट",
+                loginTitle: "पोर्टल लॉगिन",
+                loginSub: "ट्रस्टेड मैनपावर सप्लाई पार्टनर",
+                selectRole: "भूमिका चुनें (Role)",
+                whatsappLabel: "व्हाट्सएप / फोन नंबर",
+                otpSentMsg: "व्हाट्सएप पर ओटीपी भेज दिया गया है! (डिमोटपी: 1234)",
+                enterOtp: "4-अंकों का ओटीपी दर्ज करें",
+                sendOtpBtnText: "व्हाट्सएप ओटीपी प्राप्त करें",
+                verifyLoginBtn: "सत्यापित करें और लॉगिन करें",
+                welcome: "स्वागत है",
+                dashSub: "कार्यबल पेरोल, जॉइनिंग तिथि और प्रोफाइल को आसानी से प्रबंधित करें।",
+                addRecordTitle: "कार्यबल और वेतन रिकॉर्ड जोड़ें",
+                tName: "कर्मचारी / शिक्षक का नाम",
+                tProfile: "प्रोफाइल / पद",
+                tSubject: "विभाग / विषय",
+                tJoinDate: "जॉइनिंग तिथि",
+                tBasic: "मूल वेतन (₹)",
+                tBonus: "बोनस / भत्ता (₹)",
+                saveRecordBtn: "वेतन रिकॉर्ड सहेजें",
+                recordsTableTitle: "कार्यबल और वेतन निर्देशिका",
+                thName: "नाम",
+                thProfile: "प्रोफाइल",
+                thSubject: "विभाग",
+                thJoin: "जॉइनिंग तिथि",
+                thBasic: "बेसिक (₹)",
+                thBonus: "बोनस (₹)",
+                thTotal: "कुल (₹)",
+                thAction: "कार्रवाई"
+            },
+            mr: {
+                selectLang: "भाषा:",
+                logout: "बाहेर पडा",
+                loginTitle: "पोर्टल लॉगिन",
+                loginSub: "ट्रस्टेड मॅनपॉवर सप्लाई पार्टनर",
+                selectRole: "भूमिका निवडा (Role)",
+                whatsappLabel: "व्हाट्सएप / फोन नंबर",
+                otpSentMsg: "व्हाट्सएपवर ओटीपी पाठवण्यात आला आहे! (डिमोटपी: 1234)",
+                enterOtp: "४-अंकी ओटीपी प्रविष्ट करा",
+                sendOtpBtnText: "व्हाट्सएप ओटीपी मिळवा",
+                verifyLoginBtn: "तपासा आणि लॉगिन करा",
+                welcome: "स्वागत आहे",
+                dashSub: "कार्य दल पेरोल, रुजू तारीख आणि प्रोफाइल कार्यक्षमतेने व्यवस्थापित करा.",
+                addRecordTitle: "कार्य दल आणि वेतन रेकॉर्ड जोडा",
+                tName: "कर्मचारी / शिक्षकाचे नाव",
+                tProfile: "प्रोफाइल / पद",
+                tSubject: "विभाग / विषय",
+                tJoinDate: "रुजू झाल्याची तारीख",
+                tBasic: "मूळ वेतन (₹)",
+                tBonus: "बोनस / भत्ता (₹)",
+                saveRecordBtn: "वेतन रेकॉर्ड जतन करा",
+                recordsTableTitle: "कार्य दल आणि वेतन निर्देशिका",
+                thName: "नाव",
+                thProfile: "प्रोफाइल",
+                thSubject: "विभाग",
+                thJoin: "तारीख",
+                thBasic: "मूळ (₹)",
+                thBonus: "बोनस (₹)",
+                thTotal: "एकूण (₹)",
+                thAction: "कृती"
+            }
+        };
+
+        function changeLanguage(lang) {
+            document.querySelectorAll("[data-i18n]").forEach(el => {
+                const key = el.getAttribute("data-i18n");
+                if (translations[lang][key]) {
+                    el.innerText = translations[lang][key];
+                }
+            });
+        }
+
+        let currentRole = "";
+        let salaryRecords = JSON.parse(localStorage.getItem('pindari_workforce_records')) || [
+            { name: "Amit Sharma", profile: "PGT Teacher", subject: "Mathematics", joinDate: "2022-06-15", basic: 48000, bonus: 5000 },
+            { name: "Priya Verma", profile: "TGT Teacher", subject: "Science", joinDate: "2023-01-10", basic: 40000, bonus: 3000 }
+        ];
+
+        document.getElementById('currentDate').innerText = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+
+        function sendWhatsAppOTP() {
+            const phone = document.getElementById('phoneNumber').value;
+            if(phone.length !== 10) {
+                alert("Please enter a valid 10-digit mobile number!");
+                return;
+            }
+            document.getElementById('otpBoxContainer').classList.remove('hidden');
+            document.getElementById('sendOtpBtn').classList.add('hidden');
+            document.getElementById('verifyOtpBtn').classList.remove('hidden');
+        }
+
+        function verifyOTP() {
+            const otp = document.getElementById('otpInput').value;
+            if(otp !== "1234") {
+                alert("Incorrect OTP! Please enter demo OTP: 1234");
+                return;
+            }
+
+            currentRole = document.getElementById('loginRole').value;
+            document.getElementById('authSection').classList.add('hidden');
+            document.getElementById('dashboardSection').classList.remove('hidden');
+            document.getElementById('userProfileBadge').classList.remove('hidden');
+            document.getElementById('userRoleDisplay').innerText = currentRole;
+            document.getElementById('loggedInUserText').innerText = `Role: ${currentRole.toUpperCase()}`;
+
+            if(currentRole === 'employee') {
+                document.getElementById('adminControls').style.display = 'none';
+            } else {
+                document.getElementById('adminControls').style.display = 'block';
+            }
+
+            renderTable();
+        }
+
+        function logout() {
+            currentRole = "";
+            document.getElementById('dashboardSection').classList.add('hidden');
+            document.getElementById('authSection').classList.remove('hidden');
+            document.getElementById('userProfileBadge').classList.add('hidden');
+            document.getElementById('phoneNumber').value = "";
+            document.getElementById('otpInput').value = "";
+            document.getElementById('otpBoxContainer').classList.add('hidden');
+            document.getElementById('sendOtpBtn').classList.remove('hidden');
+            document.getElementById('verifyOtpBtn').classList.add('hidden');
+        }
+
+        function saveRecord() {
+            const name = document.getElementById('tName').value;
+            const profile = document.getElementById('tProfile').value;
+            const subject = document.getElementById('tSubject').value;
+            const joinDate = document.getElementById('tJoinDate').value;
+            const basic = parseFloat(document.getElementById('tBasic').value);
+            const bonus = parseFloat(document.getElementById('tBonus').value) || 0;
+
+            if(!name || !subject || !joinDate || isNaN(basic)) {
+                alert("Please fill in all required fields correctly!");
+                return;
+            }
+
+            salaryRecords.push({ name, profile, subject, joinDate, basic, bonus });
+            localStorage.setItem('pindari_workforce_records', JSON.stringify(salaryRecords));
+
+            document.getElementById('tName').value = "";
+            document.getElementById('tSubject').value = "";
+            document.getElementById('tJoinDate').value = "";
+            document.getElementById('tBasic').value = "";
+            document.getElementById('tBonus').value = "";
+
+            renderTable();
+            alert("Workforce record saved successfully!");
+        }
+
+        function deleteRecord(index) {
+            if(confirm("Are you sure you want to delete this record?")) {
+                salaryRecords.splice(index, 1);
+                localStorage.setItem('pindari_workforce_records', JSON.stringify(salaryRecords));
+                renderTable();
+            }
+        }
+
+        function renderTable() {
+            const tbody = document.getElementById('salaryTableBody');
+            tbody.innerHTML = "";
+            
+            let displayRecords = salaryRecords;
+            if(currentRole === 'employee') {
+                displayRecords = salaryRecords.slice(0, 1); 
+                document.getElementById('actionHeader').style.display = 'none';
+            } else {
+                document.getElementById('actionHeader').style.display = 'table-cell';
+            }
+
+            document.getElementById('recordCount').innerText = `${displayRecords.length} Records`;
+
+            displayRecords.forEach((rec, index) => {
+                const total = rec.basic + rec.bonus;
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-gray-50 transition";
+                
+                let actionHtml = '';
+                if(currentRole !== 'employee') {
+                    actionHtml = `<td class="p-3 text-center">
+                        <button onclick="deleteRecord(${index})" class="text-red-500 hover:text-red-700 p-1"><i class="fa fa-trash"></i></button>
+                    </td>`;
+                }
+
+                tr.innerHTML = `
+                    <td class="p-3 font-semibold text-gray-800">${rec.name}</td>
+                    <td class="p-3"><span class="bg-red-50 text-pindariRed px-2.5 py-1 rounded-full text-xs font-semibold">${rec.profile}</span></td>
+                    <td class="p-3 text-gray-600">${rec.subject}</td>
+                    <td class="p-3 text-gray-600">${rec.joinDate}</td>
+                    <td class="p-3 text-gray-700">₹${rec.basic.toLocaleString()}</td>
+                    <td class="p-3 text-gray-700">₹${rec.bonus.toLocaleString()}</td>
+                    <td class="p-3 font-bold text-green-600">₹${total.toLocaleString()}</td>
+                    ${actionHtml}
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+    </script>
+</body>
+</html>
