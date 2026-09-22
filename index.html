@@ -30,7 +30,7 @@
         }
         .ticker-wrapper { display: flex; align-items: center; gap: 15px; overflow: hidden; }
         .ticker-badge { background-color: var(--primary-red); color: white; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; white-space: nowrap; }
-        .ticker-content { display: flex; gap: 30px; animation: ticker 22s linear infinite; white-space: nowrap; }
+        .ticker-content { display: flex; gap: 30px; animation: ticker 25s linear infinite; white-space: nowrap; }
         @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         .live-clock { color: #94A3B8; font-weight: 600; display: flex; align-items: center; gap: 6px; white-space: nowrap; }
 
@@ -55,13 +55,17 @@
         nav a { text-decoration: none; color: #475569; font-weight: 600; font-size: 0.88rem; transition: 0.2s; }
         nav a:hover { color: var(--primary-red); }
 
+        .lang-switch { display: flex; gap: 5px; }
+        .lang-btn { background: #F1F5F9; border: 1px solid #CBD5E1; padding: 4px 8px; font-size: 0.75rem; font-weight: 700; border-radius: 4px; cursor: pointer; }
+        .lang-btn.active { background: var(--primary-red); color: white; border-color: var(--primary-red); }
+
         .btn-portal { background: var(--primary-navy); color: white; padding: 8px 14px; border-radius: 6px; font-weight: 700; font-size: 0.82rem; border: none; cursor: pointer; display: flex; align-items: center; gap: 6px; text-decoration: none; }
 
         .hero { padding: 60px 4% 40px; text-align: center; background: radial-gradient(circle at center, #FFF5F5 0%, #FFFFFF 100%); }
         .location-tag { display: inline-flex; align-items: center; gap: 6px; background: #FFEAEA; color: var(--primary-red); font-weight: 700; font-size: 0.8rem; padding: 6px 16px; border-radius: 20px; text-transform: uppercase; margin-bottom: 20px; }
         .hero h2 { font-size: 2.6rem; color: var(--primary-navy); font-weight: 800; line-height: 1.2; max-width: 900px; margin: 0 auto 15px; }
         .hero h2 span { color: var(--primary-red); }
-        .hero p { color: var(--text-muted); font-size: 1rem; max-width: 650px; margin: 0 auto 30px; }
+        .hero p { color: var(--text-muted); font-size: 1rem; max-width: 680px; margin: 0 auto 30px; }
 
         .hero-btns { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
         .btn-main { background: var(--primary-red); color: white; padding: 14px 24px; border-radius: 8px; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; border: none; cursor: pointer; box-shadow: 0 4px 12px rgba(229, 46, 46, 0.25); }
@@ -93,19 +97,26 @@
         </a>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="portal.html">Portal Login</a></li>
+                <li><a href="#services">Services & Solutions</a></li>
+                <li><a href="#clients">Industry Clients</a></li>
+                <li><a href="#reviews">Client Reviews</a></li>
+                <li><a href="#contact">Contact Desk</a></li>
             </ul>
         </nav>
-        <div>
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <div class="lang-switch">
+                <button class="lang-btn active">EN</button>
+                <button class="lang-btn">हिंदी</button>
+                <button class="lang-btn">मराठी</button>
+            </div>
             <a href="portal.html" class="btn-portal"><i class="fa-solid fa-right-to-bracket"></i> Portal Login</a>
         </div>
     </header>
 
     <section class="hero">
-        <div class="location-tag"><i class="fa-solid fa-location-dot"></i> Nigdi, Pune</div>
+        <div class="location-tag"><i class="fa-solid fa-location-dot"></i> SUNRISE TOWER, NIGDI, PUNE</div>
         <h2>Manage & Deploy Industrial Manpower, <span>All From One Platform</span></h2>
-        <p>Providing Skilled, Semi-Skilled, Unskilled, and Workforce Staffing Solutions across PCMC region.</p>
+        <p>Providing Skilled, Semi-Skilled, Unskilled, Machine Operators, and Workforce Staffing Solutions across Nigdi, Bhosari, Chakan, and PCMC region.</p>
         <div class="hero-btns">
             <a href="portal.html" class="btn-main"><i class="fa-solid fa-user-plus"></i> Worker Registration</a>
             <a href="portal.html" class="btn-dark"><i class="fa-solid fa-building"></i> Client Hiring Desk</a>
