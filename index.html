@@ -19,6 +19,7 @@
         html { scroll-behavior: smooth; }
         body { background-color: #FFFFFF; color: var(--text-dark); line-height: 1.5; }
         
+        /* Top Announcement Bar */
         .top-ticker {
             background-color: var(--primary-navy);
             color: #FFFFFF;
@@ -30,10 +31,11 @@
         }
         .ticker-wrapper { display: flex; align-items: center; gap: 15px; overflow: hidden; }
         .ticker-badge { background-color: var(--primary-red); color: white; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; white-space: nowrap; }
-        .ticker-content { display: flex; gap: 30px; animation: ticker 25s linear infinite; white-space: nowrap; }
+        .ticker-content { display: flex; gap: 30px; animation: ticker 22s linear infinite; white-space: nowrap; }
         @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         .live-clock { color: #94A3B8; font-weight: 600; display: flex; align-items: center; gap: 6px; white-space: nowrap; }
-
+        
+        /* Header Navigation */
         header {
             background: #FFFFFF;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
@@ -46,91 +48,319 @@
             z-index: 1000;
         }
         .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-        .brand-logo { width: 46px; height: 46px; background: #fff; border-radius: 6px; overflow: hidden; display: flex; align-items: center; justify-content: center; border: 1px solid #E2E8F0; }
+        .brand-logo { width: 46px; height: 46px; background: transparent; border-radius: 6px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
         .brand-logo img { width: 100%; height: 100%; object-fit: contain; }
         .brand-info h1 { font-size: 1.15rem; color: var(--primary-navy); font-weight: 800; letter-spacing: -0.5px; }
         .brand-info p { font-size: 0.72rem; color: var(--primary-red); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
-
+        
         nav ul { display: flex; list-style: none; gap: 20px; align-items: center; }
         nav a { text-decoration: none; color: #475569; font-weight: 600; font-size: 0.88rem; transition: 0.2s; }
         nav a:hover { color: var(--primary-red); }
-
-        .lang-switch { display: flex; gap: 5px; }
-        .lang-btn { background: #F1F5F9; border: 1px solid #CBD5E1; padding: 4px 8px; font-size: 0.75rem; font-weight: 700; border-radius: 4px; cursor: pointer; }
-        .lang-btn.active { background: var(--primary-red); color: white; border-color: var(--primary-red); }
-
+        
+        .header-actions { display: flex; gap: 8px; align-items: center; }
+        .lang-switch button { background: #F1F5F9; border: 1px solid #CBD5E1; padding: 5px 8px; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 0.75rem; }
+        .lang-switch button.active { background: var(--primary-red); color: white; border-color: var(--primary-red); }
         .btn-portal { background: var(--primary-navy); color: white; padding: 8px 14px; border-radius: 6px; font-weight: 700; font-size: 0.82rem; border: none; cursor: pointer; display: flex; align-items: center; gap: 6px; text-decoration: none; }
-
+        
+        /* Hero Section */
         .hero { padding: 60px 4% 40px; text-align: center; background: radial-gradient(circle at center, #FFF5F5 0%, #FFFFFF 100%); }
         .location-tag { display: inline-flex; align-items: center; gap: 6px; background: #FFEAEA; color: var(--primary-red); font-weight: 700; font-size: 0.8rem; padding: 6px 16px; border-radius: 20px; text-transform: uppercase; margin-bottom: 20px; }
         .hero h2 { font-size: 2.6rem; color: var(--primary-navy); font-weight: 800; line-height: 1.2; max-width: 900px; margin: 0 auto 15px; }
         .hero h2 span { color: var(--primary-red); }
-        .hero p { color: var(--text-muted); font-size: 1rem; max-width: 680px; margin: 0 auto 30px; }
-
+        .hero p { color: var(--text-muted); font-size: 1rem; max-width: 650px; margin: 0 auto 30px; }
         .hero-btns { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        
         .btn-main { background: var(--primary-red); color: white; padding: 14px 24px; border-radius: 8px; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; border: none; cursor: pointer; box-shadow: 0 4px 12px rgba(229, 46, 46, 0.25); }
         .btn-dark { background: var(--primary-navy); color: white; padding: 14px 24px; border-radius: 8px; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; border: none; cursor: pointer; }
-
+        
+        /* General Section Layout */
+        .section-tag { color: var(--primary-red); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; text-align: center; }
+        .section-heading { font-size: 2rem; color: var(--primary-navy); font-weight: 800; margin-bottom: 8px; text-align: center; }
+        .section-subtext { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 40px; text-align: center; }
+        
+        /* Services Grid */
+        .services-section { padding: 70px 4%; background: #FFFFFF; scroll-margin-top: 70px; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
+        .service-card { background: #FFFFFF; border: 1px solid #E2E8F0; padding: 25px; border-radius: 12px; text-align: left; transition: 0.3s; }
+        .service-card:hover { border-color: var(--primary-red); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .service-icon { width: 45px; height: 45px; background: #FFEAEA; color: var(--primary-red); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 15px; }
+        
+        /* Clients Section */
+        .clients-section { padding: 60px 4%; background: var(--bg-light); scroll-margin-top: 70px; }
+        .clients-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; max-width: 1200px; margin: 0 auto; }
+        .client-box { background: white; padding: 20px; border-radius: 10px; border: 1px solid #E2E8F0; text-align: center; }
+        
+        /* Reviews Section */
+        .reviews-section { padding: 70px 4%; background: #FFFFFF; scroll-margin-top: 70px; }
+        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
+        .review-card { background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 12px; padding: 25px; text-align: left; }
+        .stars { color: #FFB800; margin-bottom: 12px; }
+        
+        /* Contact Section & Map */
+        .contact-section { padding: 70px 4%; background: var(--bg-light); scroll-margin-top: 70px; }
+        .contact-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .contact-box, .map-box { background: white; padding: 30px; border-radius: 12px; border: 1px solid #E2E8F0; }
+        .map-box iframe { width: 100%; height: 280px; border: 0; border-radius: 8px; }
+        
+        .form-group { margin-bottom: 15px; text-align: left; }
+        .form-group label { display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 5px; color: var(--primary-navy); }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 10px; border: 1px solid #CBD5E1; border-radius: 6px; font-size: 0.9rem; outline: none; }
+        
+        /* Modal Box */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); z-index: 2000; justify-content: center; align-items: center; }
+        .modal-content { background: white; padding: 30px; border-radius: 12px; max-width: 480px; width: 90%; position: relative; }
+        .close-modal { position: absolute; top: 15px; right: 15px; font-size: 1.4rem; cursor: pointer; color: var(--text-muted); }
+        
         .wa-float { position: fixed; bottom: 20px; right: 20px; background: var(--whatsapp-green); color: white; width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; text-decoration: none; box-shadow: 0 4px 10px rgba(0,0,0,0.15); z-index: 1000; }
-        @media(max-width: 768px) { nav { display: none; } .hero h2 { font-size: 1.8rem; } }
+        
+        @media(max-width: 768px) {
+            nav { display: none; }
+            .hero h2 { font-size: 1.8rem; }
+            .contact-container { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
+
+    <!-- Top Announcement Bar -->
     <div class="top-ticker">
         <div class="ticker-wrapper">
             <span class="ticker-badge">Live Updates</span>
             <div class="ticker-content">
                 <span>🔥 <strong>URGENT REQUIREMENT:</strong> 5 CNC Operators at <strong>Dankal Tech, Nigdi</strong></span>
-                <span>⚡ <strong>Rahul Kumar</strong> deployed at <strong>Tata Motors Suppliers Ltd</strong></span>
+                <span>⚡ <strong>Amit Kumar</strong> joined <strong>Kraft Plast Inds</strong> as Helper</span>
+                <span>🔥 <strong>NEW HIRING:</strong> 10 Machine Handlers for <strong>RK Polymer, Chakan</strong></span>
             </div>
         </div>
-        <div class="live-clock"><i class="fa-regular fa-clock"></i> <span id="current-time">Loading...</span></div>
+        <div class="live-clock">
+            <i class="fa-regular fa-clock"></i> <span id="current-time">Loading...</span>
+        </div>
     </div>
 
+    <!-- Header Navigation -->
     <header>
         <a href="index.html" class="brand">
-            <div class="brand-logo"><img src="logo_2.png" alt="Pindari Logo"></div>
+            <div class="brand-logo">
+                <!-- Ensure your logo file is named logo_2.png or logo.png and uploaded in root folder -->
+                <img src="logo_2.png" alt="Pindari Enterprises Logo" onerror="this.src='logo.png'">
+            </div>
             <div class="brand-info">
                 <h1>PINDARI ENTERPRISES</h1>
-                <p>Staffing & Industrial Platform</p>
+                <p id="tagline">Staffing & Industrial Platform</p>
             </div>
         </a>
         <nav>
             <ul>
-                <li><a href="#services">Services & Solutions</a></li>
-                <li><a href="#clients">Industry Clients</a></li>
-                <li><a href="#reviews">Client Reviews</a></li>
-                <li><a href="#contact">Contact Desk</a></li>
+                <li><a href="#services" id="nav-services">Services & Solutions</a></li>
+                <li><a href="#clients" id="nav-clients">Industry Clients</a></li>
+                <li><a href="#reviews" id="nav-reviews">Client Reviews</a></li>
+                <li><a href="#contact" id="nav-contact">Contact Desk</a></li>
             </ul>
         </nav>
-        <div style="display: flex; align-items: center; gap: 15px;">
+        <div class="header-actions">
             <div class="lang-switch">
-                <button class="lang-btn active">EN</button>
-                <button class="lang-btn">हिंदी</button>
-                <button class="lang-btn">मराठी</button>
+                <button id="btn-en" class="active" onclick="switchLang('en')">EN</button>
+                <button id="btn-hi" onclick="switchLang('hi')">हिंदी</button>
+                <button id="btn-mr" onclick="switchLang('mr')">मराठी</button>
             </div>
-            <a href="portal.html" class="btn-portal"><i class="fa-solid fa-right-to-bracket"></i> Portal Login</a>
+            <a href="portal.html" class="btn-portal"><i class="fa-solid fa-right-to-bracket"></i> <span id="btn-portal-text">Portal Login</span></a>
         </div>
     </header>
 
+    <!-- Hero Section -->
     <section class="hero">
-        <div class="location-tag"><i class="fa-solid fa-location-dot"></i> SUNRISE TOWER, NIGDI, PUNE</div>
-        <h2>Manage & Deploy Industrial Manpower, <span>All From One Platform</span></h2>
-        <p>Providing Skilled, Semi-Skilled, Unskilled, Machine Operators, and Workforce Staffing Solutions across Nigdi, Bhosari, Chakan, and PCMC region.</p>
+        <div class="location-tag"><i class="fa-solid fa-location-dot"></i> Sunrise Tower, Nigdi, Pune</div>
+        <h2 id="hero-title">Manage & Deploy Industrial Manpower, <span>All From One Platform</span></h2>
+        <p id="hero-desc">Providing Skilled, Semi-Skilled, Unskilled, Machine Operators, and Workforce Staffing Solutions across Nigdi, Bhosari, Chakan, and PCMC region.</p>
         <div class="hero-btns">
-            <a href="portal.html" class="btn-main"><i class="fa-solid fa-user-plus"></i> Worker Registration</a>
-            <a href="portal.html" class="btn-dark"><i class="fa-solid fa-building"></i> Client Hiring Desk</a>
+            <button class="btn-main" onclick="openModal('worker')"><i class="fa-solid fa-user-plus"></i> <span id="btn-job-text">Worker Registration</span></button>
+            <button class="btn-dark" onclick="openModal('client')"><i class="fa-solid fa-building"></i> <span id="btn-hire-text">Client Hiring Desk</span></button>
         </div>
     </section>
 
-    <a href="https://wa.me/919876543210" target="_blank" class="wa-float"><i class="fa-brands fa-whatsapp"></i></a>
+    <!-- Services Section -->
+    <section class="services-section" id="services">
+        <div class="section-tag">Platform Solutions</div>
+        <h2 class="section-heading" id="services-title">End-to-End Workforce Management Solutions</h2>
+        <p class="section-subtext">Comprehensive staffing, deployment, and operational workforce lifecycle control</p>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-users-gear"></i></div>
+                <h3>Skilled & Technical Staffing</h3>
+                <p>CNC/VMC Operators, Welders, Fitters, Electricians, and Machine Technicians ready for deployment.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-boxes-packing"></i></div>
+                <h3>Unskilled & Helper Supply</h3>
+                <p>Assembly Line Workers, Loading/Unloading Helpers, Packaging Staff, and Material Handlers.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                <h3>Payroll & Statutory Compliance</h3>
+                <p>Complete management of worker payroll, PF, ESIC compliance, and attendance tracking.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <h3>Background Verification</h3>
+                <p>Verified worker profiles with complete address check and police record verification.</p>
+            </div>
+        </div>
+    </section>
 
+    <!-- Clients Section -->
+    <section class="clients-section" id="clients">
+        <div class="section-tag">Trusted Partners</div>
+        <h2 class="section-heading" id="clients-title">Industry Clients We Serve</h2>
+        <p class="section-subtext">Over 20+ Years of Excellence led by Mr. Pawan Mishra</p>
+        <div class="clients-grid">
+            <div class="client-box"><h3>DANKAL TECH</h3><p>Mr. Sachin Dandekar</p></div>
+            <div class="client-box"><h3>R K POLYMER</h3><p>Mr. Amol Shah</p></div>
+            <div class="client-box"><h3>KRAFT PLAST INDS</h3><p>Mr. Sanket Shah</p></div>
+            <div class="client-box"><h3>APEX ENGINEERS</h3><p>Mr. Murti</p></div>
+            <div class="client-box"><h3>SUHAS ENTERPRISES</h3><p>Mr. Ganesh Sathe</p></div>
+            <div class="client-box"><h3>TECHNOVA</h3><p>Mr. Jitendra Kelkar</p></div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews-section" id="reviews">
+        <div class="section-tag">Client Feedback</div>
+        <h2 class="section-heading">Real Feedback from Unit Heads</h2>
+        <p class="section-subtext">Verified Reviews from PCMC Industrial Area Managers</p>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>"PINDARI ENTERPRISES PROVIDED US WITH 15 CNC OPERATORS WITHIN 24 HOURS! EXCELLENT SERVICE & HIGHLY DISCIPLINED WORKFORCE."</p>
+                <div class="author"><h4>MR. SACHIN DANDEKAR</h4><span>Dankal Tech, Nigdi</span></div>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>"THE MOST TRANSPARENT PAYROLL AND ADVANCE SYSTEM IN PCMC INDUSTRIAL AREA. OUR PRODUCTION HAS NEVER SUFFERED SINGLE MANPOWER SHORTAGE!"</p>
+                <div class="author"><h4>MR. AMOL SHAH</h4><span>RK Polymer</span></div>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>"ALL WORKERS ARE PROPERLY VERIFIED WITH RECORD CHECKS. HIGHLY RECOMMENDED FOR RELIABLE INDUSTRIAL STAFFING!"</p>
+                <div class="author"><h4>MR. SANKET SHAH</h4><span>Kraft Plast Inds</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Map Section -->
+    <section class="contact-section" id="contact">
+        <div class="contact-container">
+            <div class="contact-box">
+                <h3 style="font-size: 1.25rem; margin-bottom: 20px; color: var(--primary-navy);">Contact & Instant Registration Desk</h3>
+                <form onsubmit="handleFormSubmit(event)">
+                    <div class="form-group">
+                        <label>Full Name / Company Name</label>
+                        <input type="text" placeholder="Enter name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>WhatsApp Contact Number</label>
+                        <input type="tel" placeholder="Enter 10 digit number" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Service Category</label>
+                        <select>
+                            <option>Need Manpower / Hire Staff (Client)</option>
+                            <option>Looking for Factory Job (Worker)</option>
+                            <option>Payroll / Compliance Query</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Message / Manpower Requirements</label>
+                        <textarea rows="3" placeholder="State your requirements..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-main" style="width: 100%; justify-content: center;">Submit Form</button>
+                </form>
+            </div>
+            <div class="map-box">
+                <h3 style="font-size: 1.25rem; margin-bottom: 20px; color: var(--primary-navy);">Office Map & Directions</h3>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3780.887462002166!2d73.766158!3d18.674681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2b9e6f3f00001%3A0x123456789abcdef!2sNigdi%2C%20Pimpri-Chinchwad%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+                <p style="margin-top: 15px; font-weight: 600; font-size: 0.88rem; color: var(--text-muted);"><i class="fa-solid fa-location-dot" style="color: var(--primary-red);"></i> Sunrise Tower, Near Kohinoor Arc, Nigdi, Pune, Maharashtra 411044</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Box -->
+    <div class="modal" id="actionModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">×</span>
+            <h3 id="modalTitle" style="margin-bottom: 15px; color: var(--primary-navy);">Registration Desk</h3>
+            <form onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" placeholder="Enter Full Name" required>
+                </div>
+                <div class="form-group">
+                    <label>Mobile Number</label>
+                    <input type="tel" placeholder="Mobile Number" required>
+                </div>
+                <div class="form-group">
+                    <label>Job Category / Company</label>
+                    <input type="text" placeholder="e.g. CNC Operator / Helper / Hiring Manager">
+                </div>
+                <button type="submit" class="btn-main" style="width: 100%; justify-content: center;">Submit Registration</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/919876543210?text=Hello%20Pindari%20Enterprises,%20I%20have%20an%20inquiry." target="_blank" class="wa-float">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Scripts -->
     <script>
         function updateClock() {
             const now = new Date();
-            document.getElementById('current-time').innerText = now.toLocaleTimeString();
+            const options = { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+            document.getElementById('current-time').innerText = now.toLocaleString('en-GB', options).replace(',', '');
         }
         setInterval(updateClock, 1000);
+        updateClock();
+
+        function openModal(type) {
+            const modal = document.getElementById('actionModal');
+            const title = document.getElementById('modalTitle');
+            if(type === 'worker') title.innerText = "Worker Registration Desk";
+            else if(type === 'client') title.innerText = "Client Hiring Requirement Desk";
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() { document.getElementById('actionModal').style.display = 'none'; }
+        
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            alert("Details submitted successfully!");
+            closeModal();
+        }
+
+        const dictionary = {
+            en: { tagline: "Staffing & Industrial Platform", navServices: "Services & Solutions", navClients: "Industry Clients", navReviews: "Client Reviews", navContact: "Contact Desk", btnPortal: "Portal Login", heroTitle: "Manage & Deploy Industrial Manpower, All From One Platform", heroDesc: "Providing Skilled, Semi-Skilled, Unskilled, Machine Operators, and Workforce Staffing Solutions across Nigdi, Bhosari, Chakan, and PCMC region.", btnJob: "Worker Registration", btnHire: "Client Hiring Desk", servicesTitle: "End-to-End Workforce Management Solutions", clientsTitle: "Industry Clients We Serve" },
+            hi: { tagline: "स्टाफिंग एवं इंडस्ट्रियल प्लेटफॉर्म", navServices: "सेवाएं और समाधान", navClients: "हमारे क्लाइंट्स", navReviews: "ग्राहक समीक्षाएं", navContact: "संपर्क डेस्क", btnPortal: "पोर्टल लॉगिन", heroTitle: "औद्योगिक मैनपावर को प्रबंधित और तैनात करें, एक ही मंच से", heroDesc: "निगडी, भोसरी, चाकण और पीसीएमसी क्षेत्र में कुशल, अर्ध-कुशल, अकुशल और मशीन ऑपरेटर प्रदान करना।", btnJob: "श्रमिक पंजीकरण", btnHire: "क्लाइंट भर्ती डेस्क", servicesTitle: "संपूर्ण कार्यबल प्रबंधन समाधान", clientsTitle: "हमारे प्रमुख औद्योगिक क्लाइंट्स" },
+            mr: { tagline: "स्टाफिंग आणि इंडस्ट्रियल प्लॅटफॉर्म", navServices: "सेवा आणि उपाय", navClients: "अमचे क्लायंट्स", navReviews: "ग्राहकांचे अभिप्राय", navContact: "संपर्क कक्ष", btnPortal: "पोर्टल लॉगिन", heroTitle: "औद्योगिक मनुष्यबळ व्यवस्थापित आणि तैनात करा, एकाच प्लॅटफॉर्मवरून", heroDesc: "निगडी, भोसरी, चाकण आणि पीसीएमसी परिसरात कुशल, अर्ध-कुशल आणि मशिन ऑपरेटर्स पुरवणारी विश्वसनीय संस्था.", btnJob: "कामगार नोंदणी", btnHire: "क्लायंट भरती कक्ष", servicesTitle: "सर्वसमावेशक मनुष्यबळ व्यवस्थापन", clientsTitle: "प्रमुख औद्योगिक क्लायंट्स" }
+        };
+
+        function switchLang(lang) {
+            document.getElementById('tagline').innerText = dictionary[lang].tagline;
+            document.getElementById('nav-services').innerText = dictionary[lang].navServices;
+            document.getElementById('nav-clients').innerText = dictionary[lang].navClients;
+            document.getElementById('nav-reviews').innerText = dictionary[lang].navReviews;
+            document.getElementById('nav-contact').innerText = dictionary[lang].navContact;
+            document.getElementById('btn-portal-text').innerText = dictionary[lang].btnPortal;
+            document.getElementById('hero-title').innerText = dictionary[lang].heroTitle;
+            document.getElementById('hero-desc').innerText = dictionary[lang].heroDesc;
+            document.getElementById('btn-job-text').innerText = dictionary[lang].btnJob;
+            document.getElementById('btn-hire-text').innerText = dictionary[lang].btnHire;
+            document.getElementById('services-title').innerText = dictionary[lang].servicesTitle;
+            document.getElementById('clients-title').innerText = dictionary[lang].clientsTitle;
+
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+            document.getElementById('btn-hi').classList.toggle('active', lang === 'hi');
+            document.getElementById('btn-mr').classList.toggle('active', lang === 'mr');
+        }
     </script>
 </body>
 </html>
