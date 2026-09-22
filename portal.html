@@ -1,1 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pindari Enterprises - Advanced Portal & HR Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary-red: #E52E2E; --primary-navy: #0F172A; --bg-light: #F8FAFC; --border-color: #E2E8F0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background-color: var(--bg-light); color: var(--primary-navy); }
 
+        .login-container { display: flex; height: 100vh; justify-content: center; align-items: center; background: radial-gradient(circle, #FFF5F5 0%, #F8FAFC 100%); }
+        .login-card { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); width: 100%; max-width: 420px; text-align: center; border: 1px solid var(--border-color); }
+        .login-card img { width: 70px; margin-bottom: 15px; }
+        .login-card h2 { margin-bottom: 20px; font-weight: 800; color: var(--primary-navy); font-size: 1.4rem; }
+        .form-group { margin-bottom: 18px; text-align: left; }
+        .form-group label { display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 6px; color: var(--primary-navy); }
+        .form-group select, .form-group input { width: 100%; padding: 12px; border: 1px solid #CBD5E1; border-radius: 6px; font-size: 0.9rem; outline: none; }
+
+        .dashboard-container { display: none; grid-template-columns: 260px 1fr; min-height: 100vh; }
+        .sidebar { background: var(--primary-navy); color: white; padding: 25px 15px; display: flex; flex-direction: column; justify-content: space-between; }
+        .sidebar-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 30px; }
+        .sidebar-brand img { width: 35px; background: white; border-radius: 4px; padding: 2px; }
+        .sidebar-brand h4 { font-size: 0.95rem; font-weight: 800; }
+        .sidebar h3 { font-size: 0.75rem; color: #94A3B8; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .sidebar ul { list-style: none; }
+        .sidebar ul li { padding: 12px 15px; border-radius: 6px; margin-bottom: 6px; cursor: pointer; font-size: 0.88rem; font-weight: 600; color: #CBD5E1; display: flex; align-items: center; gap: 10px; transition: 0.2s; }
+        .sidebar ul li.active, .sidebar ul li:hover { background: var(--primary-red); color: white; }
+
+        .main-content { padding: 30px; overflow-y: auto; max-height: 100vh; }
+        .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; }
+        .top-bar h2 { font-size: 1.5rem; font-weight: 800; }
+
+        .card { background: white; padding: 24px; border-radius: 10px; border: 1px solid var(--border-color); margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+        .table-responsive { width: 100%; overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; text-align: left; margin-top: 10px; }
+        th, td { padding: 12px 15px; border-bottom: 1px solid var(--border-color); font-size: 0.88rem; }
+        th { background: #F8FAFC; color: #475569; font-weight: 700; }
+        
+        .btn { padding: 8px 14px; border-radius: 6px; font-weight: 700; font-size: 0.8rem; cursor: pointer; border: none; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; }
+        .btn-primary { background: var(--primary-red); color: white; }
+        .btn-dark { background: var(--primary-navy); color: white; }
+        .btn-outline { background: transparent; border: 1px solid #CBD5E1; color: var(--primary-navy); }
+        .badge { padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; display: inline-block; }
+        .badge-green { background: #DCFCE7; color: #166534; }
+        .badge-blue { background: #E0F2FE; color: #0369A1; }
+    </style>
+</head>
+<body>
+
+    <!-- LOGIN SCREEN -->
+    <div id="loginScreen" class="login-container">
+        <div class="login-card">
+            <img src="logo_2.png" alt="Pindari Logo">
+            <h2>Pindari Enterprise Portal</h2>
+            <div class="form-group">
+                <label>Select Portal Role</label>
+                <select id="userRole">
+                    <option value="admin">Super Admin (Pindari Master Control)</option>
+                    <option value="employer">Employer / Company Dashboard (Tata Motors Suppliers)</option>
+                    <option value="jobseeker">Job Seeker / Worker Portal</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Registered Mobile / ID</label>
+                <input type="text" id="loginId" placeholder="Enter mobile number">
+            </div>
+            <button class="btn btn-primary" style="width:100%; justify-content:center; padding: 12px;" onclick="loginPortal()">Secure Login</button>
+        </div>
+    </div>
+
+    <!-- 1. SUPER ADMIN DASHBOARD -->
+    <div id="adminDashboard" class="dashboard-container">
+        <div class="sidebar">
+            <div>
+                <div class="sidebar-brand">
+                    <img src="logo_2.png" alt="Logo">
+                    <h4>Pindari Master</h4>
+                </div>
+                <h3>Management</h3>
+                <ul>
+                    <li class="active" onclick="switchTab('admin', 'overview')"><i class="fa-solid fa-chart-pie"></i> Overview & Deployments</li>
+                    <li onclick="switchTab('admin', 'workers')"><i class="fa-solid fa-users"></i> All Workers & Data Import</li>
+                    <li onclick="switchTab('admin', 'leaves')"><i class="fa-solid fa-calendar-days"></i> Leave Approvals</li>
+                    <li onclick="switchTab('admin', 'payroll')"><i class="fa-solid fa-file-invoice-dollar"></i> Payslip Generation</li>
+                </ul>
+            </div>
+            <ul><li onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</li></ul>
+        </div>
+        <div class="main-content">
+            <div class="top-bar">
+                <h2>Super Admin Control Panel</h2>
+                <span>Welcome, <strong>Pindari HQ</strong></span>
+            </div>
+
+            <!-- Tab 1: Overview & Deployment Tracker -->
+            <div id="admin-overview" class="admin-tab-content">
+                <div class="card">
+                    <h3><i class="fa-solid fa-map-location-dot"></i> Live Workforce Deployment Tracker</h3>
+                    <p style="color: #64748B; font-size: 0.85rem; margin-bottom: 15px;">Koun sa employee kis company mein currently deployed hai:</p>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Worker Name</th>
+                                    <th>Trade / Skill</th>
+                                    <th>Deployed Client Company</th>
+                                    <th>Work Location</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Rahul Kumar</td>
+                                    <td>ITI Fitter</td>
+                                    <td><strong>Tata Motors Suppliers Ltd</strong></td>
+                                    <td>Chakan MIDC Phase 2</td>
+                                    <td><span class="badge badge-green">Active on Duty</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Amit Verma</td>
+                                    <td>CNC Operator</td>
+                                    <td><strong>Dankal Tech</strong></td>
+                                    <td>Nigdi, Pune</td>
+                                    <td><span class="badge badge-green">Active on Duty</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 2: Workers & Manual Import/Export -->
+            <div id="admin-workers" class="admin-tab-content" style="display:none;">
+                <div class="card">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 15px;">
+                        <h3>Worker Database & Profile Management</h3>
+                        <div style="display:flex; gap: 10px;">
+                            <button class="btn btn-outline" onclick="alert('Import Excel/CSV Modal Opened')"><i class="fa-solid fa-file-import"></i> Import Old Data (Excel)</button>
+                            <button class="btn btn-dark" onclick="alert('Download Data CSV')"><i class="fa-solid fa-file-export"></i> Export Data</button>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Photo</th>
+                                    <th>Name</th>
+                                    <th>Contact</th>
+                                    <th>Category</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><i class="fa-solid fa-user-circle" style="font-size: 24px; color: #64748B;"></i></td>
+                                    <td>Rahul Kumar</td>
+                                    <td>9876543210</td>
+                                    <td>Industrial Staffing</td>
+                                    <td><button class="btn btn-outline" style="padding: 4px 8px;">Edit Profile</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 3: Leave Approvals -->
+            <div id="admin-leaves" class="admin-tab-content" style="display:none;">
+                <div class="card">
+                    <h3>Pending Leave Requests Approval</h3>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Worker Name</th>
+                                    <th>Reason</th>
+                                    <th>From - To Date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Rahul Kumar</td>
+                                    <td>Urgent Family Work</td>
+                                    <td>25 Sep 2026 - 26 Sep 2026</td>
+                                    <td>
+                                        <button class="btn btn-primary" style="padding: 4px 8px;">Approve</button>
+                                        <button class="btn btn-outline" style="padding: 4px 8px; color: red;">Reject</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 4: Payslip Generation -->
+            <div id="admin-payroll" class="admin-tab-content" style="display:none;">
+                <div class="card">
+                    <h3>Monthly Payslip Generation Center</h3>
+                    <p style="color: #64748B; font-size: 0.85rem; margin-bottom: 15px;">Generate and download automated salary slips for deployed staff:</p>
+                    <div class="form-group" style="max-width: 300px;">
+                        <label>Select Worker</label>
+                        <select><option>Rahul Kumar (Tata Motors)</option></select>
+                    </div>
+                    <div class="form-group" style="max-width: 300px;">
+                        <label>Select Month</label>
+                        <select><option>August 2026</option><option>September 2026</option></select>
+                    </div>
+                    <button class="btn btn-primary" onclick="alert('Payslip Generated Successfully!')"><i class="fa-solid fa-download"></i> Generate & Download Payslip PDF</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. EMPLOYER DASHBOARD -->
+    <div id="employerDashboard" class="dashboard-container">
+        <div class="sidebar">
+            <div>
+                <div class="sidebar-brand">
+                    <img src="logo_2.png" alt="Logo">
+                    <h4>Employer Portal</h4>
+                </div>
+                <div style="padding: 10px 0; color: #94A3B8; font-size: 0.8rem; border-bottom: 1px solid #334155; margin-bottom: 15px;">
+                    <strong style="color: white;">Tata Motors Suppliers Ltd</strong><br>Rohan Deshmukh
+                </div>
+                <ul>
+                    <li class="active"><i class="fa-solid fa-briefcase"></i> Hiring Requirements (3)[cite: 18]</li>
+                    <li><i class="fa-solid fa-users-viewfinder"></i> Matched Candidates Pool (4)[cite: 18]</li>
+                    <li><i class="fa-solid fa-building"></i> Company Profile[cite: 18]</li>
+                </ul>
+            </div>
+            <ul><li onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</li></ul>
+        </div>
+        <div class="main-content">
+            <div class="top-bar">
+                <h2>Posted Hiring Requirements[cite: 18]</h2>
+                <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> Post New Requirement[cite: 18]</button>
+            </div>
+            <div class="card">
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Req ID</th>
+                                <th>Category</th>
+                                <th>Workers Needed</th>
+                                <th>Job Location</th>
+                                <th>Status</th>
+                                <th>Shortlisted</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>req-201[cite: 18]</td>
+                                <td><span class="badge badge-blue">Industrial Staffing</span>[cite: 18]</td>
+                                <td>15 Workers[cite: 18]</td>
+                                <td>Chakan, Pune[cite: 18]</td>
+                                <td><span class="badge badge-green">Fulfilled</span>[cite: 18]</td>
+                                <td>2 Candidates[cite: 18]</td>
+                                <td><button class="btn btn-outline" style="padding: 4px 8px;">Re-open</button>[cite: 18]</td>
+                            </tr>
+                            <tr>
+                                <td>req-4473[cite: 18]</td>
+                                <td><span class="badge badge-blue">Office & Support</span>[cite: 18]</td>
+                                <td>11 Workers[cite: 18]</td>
+                                <td>Chakan MIDC Phase 2[cite: 18]</td>
+                                <td><span class="badge badge-blue">New</span>[cite: 18]</td>
+                                <td>0 Candidates[cite: 18]</td>
+                                <td><button class="btn btn-primary" style="padding: 4px 8px;">Mark Fulfilled</button>[cite: 18]</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. JOB SEEKER DASHBOARD -->
+    <div id="jobseekerDashboard" class="dashboard-container">
+        <div class="sidebar">
+            <div>
+                <div class="sidebar-brand">
+                    <img src="logo_2.png" alt="Logo">
+                    <h4>Worker Portal</h4>
+                </div>
+                <h3>My Space</h3>
+                <ul>
+                    <li class="active"><i class="fa-solid fa-user"></i> My Profile & Photo</li>
+                    <li><i class="fa-solid fa-file-lines"></i> Apply Leave / Request</li>
+                    <li><i class="fa-solid fa-download"></i> My Payslips</li>
+                </ul>
+            </div>
+            <ul><li onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</li></ul>
+        </div>
+        <div class="main-content">
+            <div class="top-bar">
+                <h2>Worker Dashboard</h2>
+                <span>Rahul Kumar</span>
+            </div>
+            <div class="card">
+                <h3>Profile & Photo Upload</h3>
+                <p style="color: #64748B; font-size: 0.85rem; margin-bottom: 15px;">Apni profile photo aur documents update karein:</p>
+                <div class="form-group" style="max-width: 400px;">
+                    <label>Upload Profile Photo</label>
+                    <input type="file" accept="image/*">
+                </div>
+                <button class="btn btn-primary">Save Profile</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function loginPortal() {
+            const role = document.getElementById('userRole').value;
+            document.getElementById('loginScreen').style.display = 'none';
+            
+            if(role === 'admin') {
+                document.getElementById('adminDashboard').style.display = 'grid';
+            } else if(role === 'employer') {
+                document.getElementById('employerDashboard').style.display = 'grid';
+            } else {
+                document.getElementById('jobseekerDashboard').style.display = 'grid';
+            }
+        }
+
+        function logout() {
+            document.querySelectorAll('.dashboard-container').forEach(el => el.style.display = 'none');
+            document.getElementById('loginScreen').style.display = 'flex';
+        }
+
+        function switchTab(role, tabName) {
+            if(role === 'admin') {
+                document.querySelectorAll('.admin-tab-content').forEach(el => el.style.display = 'none');
+                document.getElementById('admin-' + tabName).style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
