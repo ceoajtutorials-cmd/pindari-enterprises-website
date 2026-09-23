@@ -3,126 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PINDARI ENTERPRISES - Staffing & Industrial Platform</title>
+    <title>PINDARI ENTERPRISES - Premium Staffing & Industrial Platform</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-red: #E52E2E;
+            --primary-red-dark: #C52222;
             --primary-navy: #0F172A;
+            --navy-light: #1E293B;
             --bg-light: #F8FAFC;
             --text-dark: #1E293B;
             --text-muted: #64748B;
+            --border-color: #E2E8F0;
             --whatsapp-green: #25D366;
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
         html { scroll-behavior: smooth; }
-        body { background-color: #FFFFFF; color: var(--text-dark); line-height: 1.5; }
-        
+        body { background-color: #FFFFFF; color: var(--text-dark); line-height: 1.6; }
+
         /* Top Announcement Bar */
-        .top-ticker {
-            background-color: var(--primary-navy);
-            color: #FFFFFF;
-            padding: 8px 4%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.82rem;
-        }
-        .ticker-wrapper { display: flex; align-items: center; gap: 15px; overflow: hidden; }
-        .ticker-badge { background-color: var(--primary-red); color: white; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; white-space: nowrap; }
-        .ticker-content { display: flex; gap: 30px; animation: ticker 22s linear infinite; white-space: nowrap; }
+        .top-ticker { background-color: var(--primary-navy); color: #FFFFFF; padding: 10px 5%; display: flex; justify-content: space-between; align-items: center; font-size: 0.82rem; }
+        .ticker-wrapper { display: flex; align-items: center; gap: 15px; overflow: hidden; width: 100%; }
+        .ticker-badge { background-color: var(--primary-red); color: white; padding: 3px 10px; border-radius: 4px; font-weight: 700; font-size: 0.72rem; text-transform: uppercase; white-space: nowrap; }
+        .ticker-content { display: flex; gap: 40px; animation: ticker 25s linear infinite; white-space: nowrap; color: #E2E8F0; }
         @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        .live-clock { color: #94A3B8; font-weight: 600; display: flex; align-items: center; gap: 6px; white-space: nowrap; }
-        
+        .live-clock { color: #94A3B8; font-weight: 600; display: flex; align-items: center; gap: 6px; white-space: nowrap; padding-left: 20px; }
+
         /* Header Navigation */
-        header {
-            background: #FFFFFF;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            padding: 12px 4%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+        header { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); box-shadow: var(--shadow-sm); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
         .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-        .brand-logo { width: 46px; height: 46px; background: transparent; border-radius: 6px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-        .brand-logo img { width: 100%; height: 100%; object-fit: contain; }
-        .brand-info h1 { font-size: 1.15rem; color: var(--primary-navy); font-weight: 800; letter-spacing: -0.5px; }
-        .brand-info p { font-size: 0.72rem; color: var(--primary-red); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
-        
-        nav ul { display: flex; list-style: none; gap: 20px; align-items: center; }
-        nav a { text-decoration: none; color: #475569; font-weight: 600; font-size: 0.88rem; transition: 0.2s; }
-        nav a:hover { color: var(--primary-red); }
-        
-        .header-actions { display: flex; gap: 8px; align-items: center; }
-        .lang-switch button { background: #F1F5F9; border: 1px solid #CBD5E1; padding: 5px 8px; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 0.75rem; }
-        .lang-switch button.active { background: var(--primary-red); color: white; border-color: var(--primary-red); }
-        .btn-portal { background: var(--primary-navy); color: white; padding: 8px 14px; border-radius: 6px; font-weight: 700; font-size: 0.82rem; border: none; cursor: pointer; display: flex; align-items: center; gap: 6px; text-decoration: none; }
-        
+        .brand-logo { width: 48px; height: 48px; background: var(--primary-navy); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: 800; }
+        .brand-info h1 { font-size: 1.2rem; color: var(--primary-navy); font-weight: 800; line-height: 1.1; }
+        .brand-info p { font-size: 0.7rem; color: var(--primary-red); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+
+        nav ul { display: flex; list-style: none; gap: 30px; align-items: center; }
+        nav a { text-decoration: none; color: var(--text-muted); font-weight: 600; font-size: 0.9rem; transition: color 0.2s; }
+        nav a:hover, nav a.active { color: var(--primary-red); }
+
+        .header-actions { display: flex; gap: 15px; align-items: center; }
+        .lang-switch { display: flex; background: #F1F5F9; border-radius: 8px; padding: 2px; border: 1px solid var(--border-color); }
+        .lang-switch button { background: transparent; border: none; padding: 5px 10px; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 0.75rem; color: var(--text-muted); }
+        .lang-switch button.active { background: white; color: var(--primary-navy); box-shadow: var(--shadow-sm); }
+        .btn-portal { background: var(--primary-navy); color: white; padding: 10px 18px; border-radius: 8px; font-weight: 700; font-size: 0.85rem; border: none; cursor: pointer; display: flex; align-items: center; gap: 8px; text-decoration: none; }
+
         /* Hero Section */
-        .hero { padding: 60px 4% 40px; text-align: center; background: radial-gradient(circle at center, #FFF5F5 0%, #FFFFFF 100%); }
-        .location-tag { display: inline-flex; align-items: center; gap: 6px; background: #FFEAEA; color: var(--primary-red); font-weight: 700; font-size: 0.8rem; padding: 6px 16px; border-radius: 20px; text-transform: uppercase; margin-bottom: 20px; }
-        .hero h2 { font-size: 2.6rem; color: var(--primary-navy); font-weight: 800; line-height: 1.2; max-width: 900px; margin: 0 auto 15px; }
+        .hero { padding: 90px 5% 70px; text-align: center; background: radial-gradient(circle at center, #FFF1F1 0%, #FFFFFF 70%); }
+        .location-tag { display: inline-flex; align-items: center; gap: 8px; background: #FFEAEA; color: var(--primary-red); font-weight: 700; font-size: 0.82rem; padding: 8px 18px; border-radius: 30px; text-transform: uppercase; margin-bottom: 25px; }
+        .hero h2 { font-size: 3.2rem; color: var(--primary-navy); font-weight: 800; line-height: 1.15; max-width: 950px; margin: 0 auto 20px; }
         .hero h2 span { color: var(--primary-red); }
-        .hero p { color: var(--text-muted); font-size: 1rem; max-width: 650px; margin: 0 auto 30px; }
+        .hero p { color: var(--text-muted); font-size: 1.1rem; max-width: 700px; margin: 0 auto 35px; }
         .hero-btns { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-        
-        .btn-main { background: var(--primary-red); color: white; padding: 14px 24px; border-radius: 8px; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; border: none; cursor: pointer; box-shadow: 0 4px 12px rgba(229, 46, 46, 0.25); }
-        .btn-dark { background: var(--primary-navy); color: white; padding: 14px 24px; border-radius: 8px; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; border: none; cursor: pointer; }
-        
+        .btn-main { background: var(--primary-red); color: white; padding: 15px 28px; border-radius: 10px; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 10px; border: none; cursor: pointer; font-size: 0.95rem; }
+        .btn-dark { background: var(--primary-navy); color: white; padding: 15px 28px; border-radius: 10px; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 10px; border: none; cursor: pointer; font-size: 0.95rem; }
+
         /* General Section Layout */
-        .section-tag { color: var(--primary-red); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; text-align: center; }
-        .section-heading { font-size: 2rem; color: var(--primary-navy); font-weight: 800; margin-bottom: 8px; text-align: center; }
-        .section-subtext { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 40px; text-align: center; }
-        
+        .section-tag { color: var(--primary-red); font-weight: 700; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; text-align: center; }
+        .section-heading { font-size: 2.3rem; color: var(--primary-navy); font-weight: 800; margin-bottom: 10px; text-align: center; }
+        .section-subtext { color: var(--text-muted); font-size: 1rem; margin-bottom: 50px; text-align: center; }
+
         /* Services Grid */
-        .services-section { padding: 70px 4%; background: #FFFFFF; scroll-margin-top: 70px; }
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
-        .service-card { background: #FFFFFF; border: 1px solid #E2E8F0; padding: 25px; border-radius: 12px; text-align: left; transition: 0.3s; }
-        .service-card:hover { border-color: var(--primary-red); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-        .service-icon { width: 45px; height: 45px; background: #FFEAEA; color: var(--primary-red); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 15px; }
-        
+        .services-section { padding: 90px 5%; background: #FFFFFF; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .service-card { background: #FFFFFF; border: 1px solid var(--border-color); padding: 35px 30px; border-radius: 16px; text-align: left; transition: 0.3s; }
+        .service-card:hover { border-color: var(--primary-red); transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+        .service-icon { width: 60px; height: 60px; background: #FFEAEA; color: var(--primary-red); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 20px; }
+
         /* Clients Section */
-        .clients-section { padding: 60px 4%; background: var(--bg-light); scroll-margin-top: 70px; }
-        .clients-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; max-width: 1200px; margin: 0 auto; }
-        .client-box { background: white; padding: 20px; border-radius: 10px; border: 1px solid #E2E8F0; text-align: center; }
-        
+        .clients-section { padding: 90px 5%; background: var(--bg-light); }
+        .clients-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
+        .client-box { background: white; padding: 25px; border-radius: 12px; border: 1px solid var(--border-color); text-align: center; }
+        .client-box h3 { font-size: 1.05rem; color: var(--primary-navy); font-weight: 800; margin-bottom: 5px; }
+        .client-box p { font-size: 0.82rem; color: var(--text-muted); font-weight: 600; }
+
         /* Reviews Section */
-        .reviews-section { padding: 70px 4%; background: #FFFFFF; scroll-margin-top: 70px; }
-        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
-        .review-card { background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 12px; padding: 25px; text-align: left; }
-        .stars { color: #FFB800; margin-bottom: 12px; }
-        
-        /* Contact Section & Map */
-        .contact-section { padding: 70px 4%; background: var(--bg-light); scroll-margin-top: 70px; }
-        .contact-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-        .contact-box, .map-box { background: white; padding: 30px; border-radius: 12px; border: 1px solid #E2E8F0; }
-        .map-box iframe { width: 100%; height: 280px; border: 0; border-radius: 8px; }
-        
-        .form-group { margin-bottom: 15px; text-align: left; }
-        .form-group label { display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 5px; color: var(--primary-navy); }
-        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 10px; border: 1px solid #CBD5E1; border-radius: 6px; font-size: 0.9rem; outline: none; }
-        
-        /* Modal Box */
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); z-index: 2000; justify-content: center; align-items: center; }
-        .modal-content { background: white; padding: 30px; border-radius: 12px; max-width: 480px; width: 90%; position: relative; }
-        .close-modal { position: absolute; top: 15px; right: 15px; font-size: 1.4rem; cursor: pointer; color: var(--text-muted); }
-        
-        .wa-float { position: fixed; bottom: 20px; right: 20px; background: var(--whatsapp-green); color: white; width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; text-decoration: none; box-shadow: 0 4px 10px rgba(0,0,0,0.15); z-index: 1000; }
-        
-        @media(max-width: 768px) {
-            nav { display: none; }
-            .hero h2 { font-size: 1.8rem; }
-            .contact-container { grid-template-columns: 1fr; }
-        }
+        .reviews-section { padding: 90px 5%; background: #FFFFFF; }
+        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .review-card { background: #FFFFFF; border: 1px solid var(--border-color); border-radius: 16px; padding: 35px; text-align: left; }
+        .stars { color: #F59E0B; margin-bottom: 15px; }
+
+        /* Contact Section */
+        .contact-section { padding: 90px 5%; background: var(--bg-light); }
+        .contact-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .contact-box, .map-box { background: white; padding: 40px; border-radius: 16px; border: 1px solid var(--border-color); }
+        .map-box iframe { width: 100%; height: 320px; border: 0; border-radius: 12px; margin-top: 5px; }
+        .form-group { margin-bottom: 20px; text-align: left; }
+        .form-group label { display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 8px; color: var(--primary-navy); }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px 16px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 0.92rem; outline: none; background: #FAFAFA; }
+
+        /* Modal & Floating WA */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.7); z-index: 2000; justify-content: center; align-items: center; padding: 20px; }
+        .modal-content { background: white; padding: 40px; border-radius: 20px; max-width: 500px; width: 100%; position: relative; }
+        .close-modal { position: absolute; top: 20px; right: 20px; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); background: #F1F5F9; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .wa-float { position: fixed; bottom: 30px; right: 30px; background: var(--whatsapp-green); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; text-decoration: none; z-index: 1000; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4); }
+
+        @media(max-width: 900px) { nav { display: none; } .hero h2 { font-size: 2.3rem; } .contact-container { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-
-    <!-- Top Announcement Bar -->
     <div class="top-ticker">
         <div class="ticker-wrapper">
             <span class="ticker-badge">Live Updates</span>
@@ -132,18 +112,12 @@
                 <span>🔥 <strong>NEW HIRING:</strong> 10 Machine Handlers for <strong>RK Polymer, Chakan</strong></span>
             </div>
         </div>
-        <div class="live-clock">
-            <i class="fa-regular fa-clock"></i> <span id="current-time">Loading...</span>
-        </div>
+        <div class="live-clock"><i class="fa-regular fa-clock"></i> <span id="current-time">Loading...</span></div>
     </div>
 
-    <!-- Header Navigation -->
     <header>
         <a href="index.html" class="brand">
-            <div class="brand-logo">
-                <!-- Ensure your logo file is named logo_2.png or logo.png and uploaded in root folder -->
-                <img src="logo_2.png" alt="Pindari Enterprises Logo" onerror="this.src='logo.png'">
-            </div>
+            <div class="brand-logo"><i class="fa-solid fa-industry"></i></div>
             <div class="brand-info">
                 <h1>PINDARI ENTERPRISES</h1>
                 <p id="tagline">Staffing & Industrial Platform</p>
@@ -151,9 +125,9 @@
         </a>
         <nav>
             <ul>
-                <li><a href="#services" id="nav-services">Services & Solutions</a></li>
-                <li><a href="#clients" id="nav-clients">Industry Clients</a></li>
-                <li><a href="#reviews" id="nav-reviews">Client Reviews</a></li>
+                <li><a href="#services" id="nav-services" class="active">Services</a></li>
+                <li><a href="#clients" id="nav-clients">Clients</a></li>
+                <li><a href="#reviews" id="nav-reviews">Reviews</a></li>
                 <li><a href="#contact" id="nav-contact">Contact Desk</a></li>
             </ul>
         </nav>
@@ -167,7 +141,6 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="location-tag"><i class="fa-solid fa-location-dot"></i> Sunrise Tower, Nigdi, Pune</div>
         <h2 id="hero-title">Manage & Deploy Industrial Manpower, <span>All From One Platform</span></h2>
@@ -178,10 +151,9 @@
         </div>
     </section>
 
-    <!-- Services Section -->
     <section class="services-section" id="services">
         <div class="section-tag">Platform Solutions</div>
-        <h2 class="section-heading" id="services-title">End-to-End Workforce Management Solutions</h2>
+        <h2 class="section-heading" id="services-title">End-to-End Workforce Management</h2>
         <p class="section-subtext">Comprehensive staffing, deployment, and operational workforce lifecycle control</p>
         <div class="services-grid">
             <div class="service-card">
@@ -196,18 +168,17 @@
             </div>
             <div class="service-card">
                 <div class="service-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
-                <h3>Payroll & Statutory Compliance</h3>
+                <h3>Payroll & Compliance</h3>
                 <p>Complete management of worker payroll, PF, ESIC compliance, and attendance tracking.</p>
             </div>
             <div class="service-card">
                 <div class="service-icon"><i class="fa-solid fa-shield-halved"></i></div>
                 <h3>Background Verification</h3>
-                <p>Verified worker profiles with complete address check and police record verification.</p>
+                <p>ID-verified worker profiles with complete address check and police record verification.</p>
             </div>
         </div>
     </section>
 
-    <!-- Clients Section -->
     <section class="clients-section" id="clients">
         <div class="section-tag">Trusted Partners</div>
         <h2 class="section-heading" id="clients-title">Industry Clients We Serve</h2>
@@ -222,127 +193,90 @@
         </div>
     </section>
 
-    <!-- Reviews Section -->
     <section class="reviews-section" id="reviews">
         <div class="section-tag">Client Feedback</div>
         <h2 class="section-heading">Real Feedback from Unit Heads</h2>
         <p class="section-subtext">Verified Reviews from PCMC Industrial Area Managers</p>
         <div class="reviews-grid">
             <div class="review-card">
-                <div class="stars">★★★★★</div>
-                <p>"PINDARI ENTERPRISES PROVIDED US WITH 15 CNC OPERATORS WITHIN 24 HOURS! EXCELLENT SERVICE & HIGHLY DISCIPLINED WORKFORCE."</p>
+                <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p>"Pindari Enterprises provided us with 15 CNC operators within 24 hours! Excellent service & highly disciplined workforce."</p>
                 <div class="author"><h4>MR. SACHIN DANDEKAR</h4><span>Dankal Tech, Nigdi</span></div>
             </div>
             <div class="review-card">
-                <div class="stars">★★★★★</div>
-                <p>"THE MOST TRANSPARENT PAYROLL AND ADVANCE SYSTEM IN PCMC INDUSTRIAL AREA. OUR PRODUCTION HAS NEVER SUFFERED SINGLE MANPOWER SHORTAGE!"</p>
+                <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p>"The most transparent payroll and advance system in PCMC industrial area. Our production has never suffered single manpower shortage!"</p>
                 <div class="author"><h4>MR. AMOL SHAH</h4><span>RK Polymer</span></div>
             </div>
             <div class="review-card">
-                <div class="stars">★★★★★</div>
-                <p>"ALL WORKERS ARE PROPERLY VERIFIED WITH RECORD CHECKS. HIGHLY RECOMMENDED FOR RELIABLE INDUSTRIAL STAFFING!"</p>
+                <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p>"All workers are properly verified with ID & police record checks. Highly recommended for reliable industrial staffing!"</p>
                 <div class="author"><h4>MR. SANKET SHAH</h4><span>Kraft Plast Inds</span></div>
             </div>
         </div>
     </section>
 
-    <!-- Contact & Map Section -->
     <section class="contact-section" id="contact">
         <div class="contact-container">
             <div class="contact-box">
-                <h3 style="font-size: 1.25rem; margin-bottom: 20px; color: var(--primary-navy);">Contact & Instant Registration Desk</h3>
+                <h3 style="font-size: 1.3rem; margin-bottom: 20px; color: var(--primary-navy); font-weight: 800;">Contact & Instant Registration Desk</h3>
                 <form onsubmit="handleFormSubmit(event)">
-                    <div class="form-group">
-                        <label>Full Name / Company Name</label>
-                        <input type="text" placeholder="Enter name" required>
-                    </div>
-                    <div class="form-group">
-                        <label>WhatsApp Contact Number</label>
-                        <input type="tel" placeholder="Enter 10 digit number" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Service Category</label>
+                    <div class="form-group"><label>Full Name / Company Name</label><input type="text" placeholder="Enter name" required></div>
+                    <div class="form-group"><label>WhatsApp Contact Number</label><input type="tel" placeholder="Enter 10 digit number" required></div>
+                    <div class="form-group"><label>Service Category</label>
                         <select>
                             <option>Need Manpower / Hire Staff (Client)</option>
                             <option>Looking for Factory Job (Worker)</option>
                             <option>Payroll / Compliance Query</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label>Message / Manpower Requirements</label>
-                        <textarea rows="3" placeholder="State your requirements..."></textarea>
-                    </div>
+                    <div class="form-group"><label>Message / Manpower Requirements</label><textarea rows="3" placeholder="State your requirements..."></textarea></div>
                     <button type="submit" class="btn-main" style="width: 100%; justify-content: center;">Submit Form</button>
                 </form>
             </div>
             <div class="map-box">
-                <h3 style="font-size: 1.25rem; margin-bottom: 20px; color: var(--primary-navy);">Office Map & Directions</h3>
+                <h3 style="font-size: 1.3rem; margin-bottom: 20px; color: var(--primary-navy); font-weight: 800;">Office Map & Directions</h3>
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3780.887462002166!2d73.766158!3d18.674681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2b9e6f3f00001%3A0x123456789abcdef!2sNigdi%2C%20Pimpri-Chinchwad%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
                 <p style="margin-top: 15px; font-weight: 600; font-size: 0.88rem; color: var(--text-muted);"><i class="fa-solid fa-location-dot" style="color: var(--primary-red);"></i> Sunrise Tower, Near Kohinoor Arc, Nigdi, Pune, Maharashtra 411044</p>
             </div>
         </div>
     </section>
 
-    <!-- Modal Box -->
     <div class="modal" id="actionModal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal()">×</span>
-            <h3 id="modalTitle" style="margin-bottom: 15px; color: var(--primary-navy);">Registration Desk</h3>
+            <h3 id="modalTitle" style="margin-bottom: 20px; color: var(--primary-navy); font-weight: 800;">Registration Desk</h3>
             <form onsubmit="handleFormSubmit(event)">
-                <div class="form-group">
-                    <label>Full Name</label>
-                    <input type="text" placeholder="Enter Full Name" required>
-                </div>
-                <div class="form-group">
-                    <label>Mobile Number</label>
-                    <input type="tel" placeholder="Mobile Number" required>
-                </div>
-                <div class="form-group">
-                    <label>Job Category / Company</label>
-                    <input type="text" placeholder="e.g. CNC Operator / Helper / Hiring Manager">
-                </div>
+                <div class="form-group"><label>Full Name</label><input type="text" placeholder="Enter Full Name" required></div>
+                <div class="form-group"><label>Mobile Number</label><input type="tel" placeholder="Mobile Number" required></div>
+                <div class="form-group"><label>Job Category / Company</label><input type="text" placeholder="e.g. CNC Operator / Helper"></div>
                 <button type="submit" class="btn-main" style="width: 100%; justify-content: center;">Submit Registration</button>
             </form>
         </div>
     </div>
 
-    <!-- Floating WhatsApp -->
-    <a href="https://wa.me/919876543210?text=Hello%20Pindari%20Enterprises,%20I%20have%20an%20inquiry." target="_blank" class="wa-float">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
+    <a href="https://wa.me/919876543210?text=Hello%20Pindari%20Enterprises" target="_blank" class="wa-float"><i class="fa-brands fa-whatsapp"></i></a>
 
-    <!-- Scripts -->
     <script>
         function updateClock() {
             const now = new Date();
-            const options = { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
-            document.getElementById('current-time').innerText = now.toLocaleString('en-GB', options).replace(',', '');
+            document.getElementById('current-time').innerText = now.toLocaleString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true }).replace(',', '');
         }
-        setInterval(updateClock, 1000);
-        updateClock();
+        setInterval(updateClock, 1000); updateClock();
 
         function openModal(type) {
             const modal = document.getElementById('actionModal');
-            const title = document.getElementById('modalTitle');
-            if(type === 'worker') title.innerText = "Worker Registration Desk";
-            else if(type === 'client') title.innerText = "Client Hiring Requirement Desk";
+            document.getElementById('modalTitle').innerText = (type === 'worker') ? "Worker Registration Desk" : "Client Hiring Requirement Desk";
             modal.style.display = 'flex';
         }
-
         function closeModal() { document.getElementById('actionModal').style.display = 'none'; }
-        
-        function handleFormSubmit(e) {
-            e.preventDefault();
-            alert("Details submitted successfully!");
-            closeModal();
-        }
+        function handleFormSubmit(e) { e.preventDefault(); alert("Details submitted successfully!"); closeModal(); }
 
         const dictionary = {
-            en: { tagline: "Staffing & Industrial Platform", navServices: "Services & Solutions", navClients: "Industry Clients", navReviews: "Client Reviews", navContact: "Contact Desk", btnPortal: "Portal Login", heroTitle: "Manage & Deploy Industrial Manpower, All From One Platform", heroDesc: "Providing Skilled, Semi-Skilled, Unskilled, Machine Operators, and Workforce Staffing Solutions across Nigdi, Bhosari, Chakan, and PCMC region.", btnJob: "Worker Registration", btnHire: "Client Hiring Desk", servicesTitle: "End-to-End Workforce Management Solutions", clientsTitle: "Industry Clients We Serve" },
-            hi: { tagline: "स्टाफिंग एवं इंडस्ट्रियल प्लेटफॉर्म", navServices: "सेवाएं और समाधान", navClients: "हमारे क्लाइंट्स", navReviews: "ग्राहक समीक्षाएं", navContact: "संपर्क डेस्क", btnPortal: "पोर्टल लॉगिन", heroTitle: "औद्योगिक मैनपावर को प्रबंधित और तैनात करें, एक ही मंच से", heroDesc: "निगडी, भोसरी, चाकण और पीसीएमसी क्षेत्र में कुशल, अर्ध-कुशल, अकुशल और मशीन ऑपरेटर प्रदान करना।", btnJob: "श्रमिक पंजीकरण", btnHire: "क्लाइंट भर्ती डेस्क", servicesTitle: "संपूर्ण कार्यबल प्रबंधन समाधान", clientsTitle: "हमारे प्रमुख औद्योगिक क्लाइंट्स" },
-            mr: { tagline: "स्टाफिंग आणि इंडस्ट्रियल प्लॅटफॉर्म", navServices: "सेवा आणि उपाय", navClients: "अमचे क्लायंट्स", navReviews: "ग्राहकांचे अभिप्राय", navContact: "संपर्क कक्ष", btnPortal: "पोर्टल लॉगिन", heroTitle: "औद्योगिक मनुष्यबळ व्यवस्थापित आणि तैनात करा, एकाच प्लॅटफॉर्मवरून", heroDesc: "निगडी, भोसरी, चाकण आणि पीसीएमसी परिसरात कुशल, अर्ध-कुशल आणि मशिन ऑपरेटर्स पुरवणारी विश्वसनीय संस्था.", btnJob: "कामगार नोंदणी", btnHire: "क्लायंट भरती कक्ष", servicesTitle: "सर्वसमावेशक मनुष्यबळ व्यवस्थापन", clientsTitle: "प्रमुख औद्योगिक क्लायंट्स" }
+            en: { tagline: "Staffing & Industrial Platform", navServices: "Services", navClients: "Clients", navReviews: "Reviews", navContact: "Contact Desk", btnPortal: "Portal Login", heroTitle: "Manage & Deploy Industrial Manpower, All From One Platform", heroDesc: "Providing Skilled, Semi-Skilled, Unskilled, Machine Operators, and Workforce Staffing Solutions across Nigdi, Bhosari, Chakan, and PCMC region.", btnJob: "Worker Registration", btnHire: "Client Hiring Desk", servicesTitle: "End-to-End Workforce Management", clientsTitle: "Industry Clients We Serve" },
+            hi: { tagline: "स्टाफिंग एवं इंडस्ट्रियल प्लेटफॉर्म", navServices: "सेवाएं", navClients: "क्लाइंट्स", navReviews: "समीक्षाएं", navContact: "संपर्क डेस्क", btnPortal: "पोर्टल लॉगिन", heroTitle: "औद्योगिक मैनपावर को प्रबंधित और तैनात करें, एक ही मंच से", heroDesc: "निगडी, भोसरी, चाकण और पीसीएमसी क्षेत्र में कुशल, अर्ध-कुशल, अकुशल और मशीन ऑपरेटर प्रदान करना।", btnJob: "श्रमिक पंजीकरण", btnHire: "क्लाइंट भर्ती डेस्क", servicesTitle: "संपूर्ण कार्यबल प्रबंधन समाधान", clientsTitle: "हमारे प्रमुख औद्योगिक क्लाइंट्स" },
+            mr: { tagline: "स्टाफिंग आणि इंडस्ट्रियल प्लॅटफॉर्म", navServices: "सेवा", navClients: "क्लायंट्स", navReviews: "अभिप्राय", navContact: "संपर्क कक्ष", btnPortal: "पोर्टल लॉगिन", heroTitle: "औद्योगिक मनुष्यबळ व्यवस्थापित आणि तैनात करा, एकाच प्लॅटफॉर्मवरून", heroDesc: "निगडी, भोसरी, चाकण आणि पीसीएमसी परिसरात कुशल, अर्ध-कुशल आणि मशिन ऑपरेटर्स पुरवणारी विश्वसनीय संस्था.", btnJob: "कामगार नोंदणी", btnHire: "क्लायंट भरती कक्ष", servicesTitle: "सर्वसमावेशक मनुष्यबळ व्यवस्थापन", clientsTitle: "प्रमुख औद्योगिक क्लायंट्स" }
         };
-
         function switchLang(lang) {
             document.getElementById('tagline').innerText = dictionary[lang].tagline;
             document.getElementById('nav-services').innerText = dictionary[lang].navServices;
@@ -356,10 +290,8 @@
             document.getElementById('btn-hire-text').innerText = dictionary[lang].btnHire;
             document.getElementById('services-title').innerText = dictionary[lang].servicesTitle;
             document.getElementById('clients-title').innerText = dictionary[lang].clientsTitle;
-
-            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-            document.getElementById('btn-hi').classList.toggle('active', lang === 'hi');
-            document.getElementById('btn-mr').classList.toggle('active', lang === 'mr');
+            document.querySelectorAll('.lang-switch button').forEach(b => b.classList.remove('active'));
+            document.getElementById('btn-' + lang).classList.add('active');
         }
     </script>
 </body>
