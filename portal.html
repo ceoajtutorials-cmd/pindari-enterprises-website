@@ -13,7 +13,6 @@
 
         .login-container { display: flex; height: 100vh; justify-content: center; align-items: center; background: radial-gradient(circle, #FFF5F5 0%, #F8FAFC 100%); }
         .login-card { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); width: 100%; max-width: 420px; text-align: center; border: 1px solid var(--border-color); }
-        .login-card img { width: 70px; margin-bottom: 15px; }
         .login-card h2 { margin-bottom: 20px; font-weight: 800; color: var(--primary-navy); font-size: 1.4rem; }
         .form-group { margin-bottom: 18px; text-align: left; }
         .form-group label { display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 6px; color: var(--primary-navy); }
@@ -22,7 +21,6 @@
         .dashboard-container { display: none; grid-template-columns: 260px 1fr; min-height: 100vh; }
         .sidebar { background: var(--primary-navy); color: white; padding: 25px 15px; display: flex; flex-direction: column; justify-content: space-between; }
         .sidebar-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 30px; }
-        .sidebar-brand img { width: 35px; background: white; border-radius: 4px; padding: 2px; }
         .sidebar-brand h4 { font-size: 0.95rem; font-weight: 800; }
         .sidebar h3 { font-size: 0.75rem; color: #94A3B8; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.5px; }
         .sidebar ul { list-style: none; }
@@ -41,25 +39,20 @@
         
         .btn { padding: 8px 14px; border-radius: 6px; font-weight: 700; font-size: 0.8rem; cursor: pointer; border: none; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; }
         .btn-primary { background: var(--primary-red); color: white; }
-        .btn-dark { background: var(--primary-navy); color: white; }
-        .btn-outline { background: transparent; border: 1px solid #CBD5E1; color: var(--primary-navy); }
         .badge { padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; display: inline-block; }
         .badge-green { background: #DCFCE7; color: #166534; }
-        .badge-blue { background: #E0F2FE; color: #0369A1; }
     </style>
 </head>
 <body>
-
     <!-- LOGIN SCREEN -->
     <div id="loginScreen" class="login-container">
         <div class="login-card">
-            <img src="logo_2.png" alt="Pindari Logo">
             <h2>Pindari Enterprise Portal</h2>
             <div class="form-group">
                 <label>Select Portal Role</label>
                 <select id="userRole">
                     <option value="admin">Super Admin (Pindari Master Control)</option>
-                    <option value="employer">Employer / Company Dashboard (Tata Motors Suppliers)</option>
+                    <option value="employer">Employer / Company Dashboard</option>
                     <option value="jobseeker">Job Seeker / Worker Portal</option>
                 </select>
             </div>
@@ -68,23 +61,19 @@
                 <input type="text" id="loginId" placeholder="Enter mobile number" value="9876543210">
             </div>
             <button class="btn btn-primary" style="width:100%; justify-content:center; padding: 12px;" onclick="loginPortal()">Secure Login</button>
+            <p style="margin-top: 15px; font-size: 0.8rem;"><a href="index.html" style="color: var(--primary-red); text-decoration: none;"><i class="fa-solid fa-arrow-left"></i> Back to Main Website</a></p>
         </div>
     </div>
 
-    <!-- 1. SUPER ADMIN DASHBOARD -->
+    <!-- ADMIN & USER DASHBOARD -->
     <div id="adminDashboard" class="dashboard-container">
         <div class="sidebar">
             <div>
-                <div class="sidebar-brand">
-                    <img src="logo_2.png" alt="Logo">
-                    <h4>Pindari Master</h4>
-                </div>
+                <div class="sidebar-brand"><h4>Pindari Master</h4></div>
                 <h3>Management</h3>
                 <ul>
-                    <li class="active" onclick="switchTab('admin', 'overview')"><i class="fa-solid fa-chart-pie"></i> Overview & Deployments</li>
-                    <li onclick="switchTab('admin', 'workers')"><i class="fa-solid fa-users"></i> Workers & Data Import</li>
-                    <li onclick="switchTab('admin', 'leaves')"><i class="fa-solid fa-calendar-days"></i> Leave Approvals</li>
-                    <li onclick="switchTab('admin', 'payroll')"><i class="fa-solid fa-file-invoice-dollar"></i> Payslip Generation</li>
+                    <li class="active" onclick="switchTab('admin', 'overview')"><i class="fa-solid fa-chart-pie"></i> Deployments</li>
+                    <li onclick="switchTab('admin', 'workers')"><i class="fa-solid fa-users"></i> Workers Database</li>
                 </ul>
             </div>
             <ul><li onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</li></ul>
@@ -94,19 +83,17 @@
                 <h2>Super Admin Control Panel</h2>
                 <span>Welcome, <strong>Pindari HQ</strong></span>
             </div>
-
-            <!-- Tab 1 -->
+            
             <div id="admin-overview" class="admin-tab-content">
                 <div class="card">
                     <h3><i class="fa-solid fa-map-location-dot"></i> Live Workforce Deployment Tracker</h3>
-                    <p style="color: #64748B; font-size: 0.85rem; margin-bottom: 15px;">Koun sa employee kis company mein currently deployed hai:</p>
                     <div class="table-responsive">
                         <table>
                             <thead>
                                 <tr><th>Worker Name</th><th>Trade</th><th>Deployed Client Company</th><th>Location</th><th>Status</th></tr>
                             </thead>
                             <tbody>
-                                <tr><td>Rahul Kumar</td><td>ITI Fitter</td><td><strong>Tata Motors Suppliers Ltd</strong></td><td>Chakan MIDC</td><td><span class="badge badge-green">Active on Duty</span></td></tr>
+                                <tr><td>Rahul Kumar</td><td>ITI Fitter</td><td><strong>Tata Motors Suppliers</strong></td><td>Chakan MIDC</td><td><span class="badge badge-green">Active on Duty</span></td></tr>
                                 <tr><td>Amit Verma</td><td>CNC Operator</td><td><strong>Dankal Tech</strong></td><td>Nigdi, Pune</td><td><span class="badge badge-green">Active on Duty</span></td></tr>
                             </tbody>
                         </table>
@@ -114,107 +101,11 @@
                 </div>
             </div>
 
-            <!-- Tab 2 -->
             <div id="admin-workers" class="admin-tab-content" style="display:none;">
                 <div class="card">
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 15px;">
-                        <h3>Worker Database Management</h3>
-                        <button class="btn btn-outline" onclick="alert('Import feature ready. Select file to upload.')"><i class="fa-solid fa-file-import"></i> Import Excel/CSV</button>
-                    </div>
+                    <h3>Worker Database Management</h3>
+                    <p style="color: #64748B; font-size: 0.9rem; margin-top: 10px;">Yahan sabhi registered workers ki list aur unka record manage kiya jayega.</p>
                 </div>
-            </div>
-
-            <!-- Tab 3 -->
-            <div id="admin-leaves" class="admin-tab-content" style="display:none;">
-                <div class="card">
-                    <h3>Pending Leave Requests</h3>
-                    <div class="table-responsive">
-                        <table>
-                            <thead><tr><th>Name</th><th>Reason</th><th>Dates</th><th>Action</th></tr></thead>
-                            <tbody>
-                                <tr><td>Rahul Kumar</td><td>Family Work</td><td>25 Sep - 26 Sep</td><td><button class="btn btn-primary" style="padding:4px 8px;" onclick="alert('Leave Approved!')">Approve</button></td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tab 4: Payslip Generation with Real Download -->
-            <div id="admin-payroll" class="admin-tab-content" style="display:none;">
-                <div class="card">
-                    <h3>Monthly Payslip Generation Center</h3>
-                    <p style="color: #64748B; font-size: 0.85rem; margin-bottom: 15px;">Generate and download salary slips instantly:</p>
-                    <button class="btn btn-primary" onclick="downloadPayslip()"><i class="fa-solid fa-download"></i> Generate & Download Payslip (TXT/PDF)</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 2. EMPLOYER DASHBOARD -->
-    <div id="employerDashboard" class="dashboard-container">
-        <div class="sidebar">
-            <div>
-                <div class="sidebar-brand">
-                    <img src="logo_2.png" alt="Logo">
-                    <h4>Employer Portal</h4>
-                </div>
-                <div style="padding: 10px 0; color: #94A3B8; font-size: 0.8rem; border-bottom: 1px solid #334155; margin-bottom: 15px;">
-                    <strong style="color: white;">Tata Motors Suppliers Ltd</strong><br>Rohan Deshmukh
-                </div>
-                <ul>
-                    <li class="active"><i class="fa-solid fa-briefcase"></i> Hiring Requirements (3)</li>
-                    <li><i class="fa-solid fa-building"></i> Company Profile</li>
-                </ul>
-            </div>
-            <ul><li onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</li></ul>
-        </div>
-        <div class="main-content">
-            <div class="top-bar">
-                <h2>Posted Hiring Requirements</h2>
-                <button class="btn btn-primary" onclick="alert('New Requirement Form Opened')"><i class="fa-solid fa-plus"></i> Post New Requirement</button>
-            </div>
-            <div class="card">
-                <div class="table-responsive">
-                    <table>
-                        <thead><tr><th>Req ID</th><th>Category</th><th>Workers</th><th>Location</th><th>Status</th><th>Actions</th></tr></thead>
-                        <tbody>
-                            <tr><td>req-201</td><td><span class="badge badge-blue">Industrial</span></td><td>15 Workers</td><td>Chakan, Pune</td><td><span class="badge badge-green">Fulfilled</span></td><td><button class="btn btn-outline" style="padding:4px 8px;">Re-open</button></td></tr>
-                            <tr><td>req-4473</td><td><span class="badge badge-blue">Support</span></td><td>11 Workers</td><td>Chakan MIDC</td><td><span class="badge badge-blue">New</span></td><td><button class="btn btn-primary" style="padding:4px 8px;">Fulfill</button></td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 3. JOB SEEKER DASHBOARD -->
-    <div id="jobseekerDashboard" class="dashboard-container">
-        <div class="sidebar">
-            <div>
-                <div class="sidebar-brand">
-                    <img src="logo_2.png" alt="Logo">
-                    <h4>Worker Portal</h4>
-                </div>
-                <h3>My Space</h3>
-                <ul>
-                    <li class="active"><i class="fa-solid fa-user"></i> My Profile & Photo</li>
-                    <li onclick="downloadPayslip()"><i class="fa-solid fa-download"></i> Download My Payslip</li>
-                </ul>
-            </div>
-            <ul><li onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</li></ul>
-        </div>
-        <div class="main-content">
-            <div class="top-bar">
-                <h2>Worker Dashboard</h2>
-                <span>Rahul Kumar</span>
-            </div>
-            <div class="card">
-                <h3>Profile & Photo Upload</h3>
-                <div class="form-group" style="max-width: 400px;">
-                    <label>Upload Profile Photo / Documents</label>
-                    <input type="file" accept="image/*">
-                </div>
-                <button class="btn btn-primary" onclick="alert('Profile Saved Successfully!')">Save Profile</button>
             </div>
         </div>
     </div>
@@ -223,34 +114,19 @@
         function loginPortal() {
             const role = document.getElementById('userRole').value;
             document.getElementById('loginScreen').style.display = 'none';
-            if(role === 'admin') document.getElementById('adminDashboard').style.display = 'grid';
-            else if(role === 'employer') document.getElementById('employerDashboard').style.display = 'grid';
-            else document.getElementById('jobseekerDashboard').style.display = 'grid';
+            document.getElementById('adminDashboard').style.display = 'grid';
         }
 
         function logout() {
-            document.querySelectorAll('.dashboard-container').forEach(el => el.style.display = 'none');
+            document.getElementById('adminDashboard').style.display = 'none';
             document.getElementById('loginScreen').style.display = 'flex';
         }
 
-        function switchTab(role, tabName) {
-            if(role === 'admin') {
-                document.querySelectorAll('.admin-tab-content').forEach(el => el.style.display = 'none');
-                document.getElementById('admin-' + tabName).style.display = 'block';
+        function switchTab(panel, tabName) {
+            if(panel === 'admin') {
+                document.getElementById('admin-overview').style.display = (tabName === 'overview') ? 'block' : 'none';
+                document.getElementById('admin-workers').style.display = (tabName === 'workers') ? 'block' : 'none';
             }
-        }
-
-        // Real Download Functionality for Payslip Demo
-        function downloadPayslip() {
-            const slipContent = "PINDARI ENTERPRISES - MONTHLY PAYSLIP\n=====================================\nEmployee: Rahul Kumar\nRole: ITI Fitter\nClient: Tata Motors Suppliers Ltd\nMonth: September 2026\nBasic Salary: Rs. 22,000\nStatus: Paid / Verified\n=====================================";
-            const blob = new Blob([slipContent], { type: 'text/plain' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'Pindari_Payslip_Rahul_Kumar.txt';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
         }
     </script>
 </body>
