@@ -8,8 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-red: #E52E2E;
-            --primary-red-dark: #C52222;
+            --primary-red: #DC2626;
+            --primary-red-dark: #B91C1C;
             --primary-navy: #0F172A;
             --navy-light: #1E293B;
             --bg-light: #F8FAFC;
@@ -20,11 +20,12 @@
             --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
             --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
         html { scroll-behavior: smooth; }
         body { background-color: #FFFFFF; color: var(--text-dark); line-height: 1.6; }
 
-        /* Top Announcement Bar */
+        /* Top Announcement Ticker */
         .top-ticker { background-color: var(--primary-navy); color: #FFFFFF; padding: 10px 5%; display: flex; justify-content: space-between; align-items: center; font-size: 0.82rem; }
         .ticker-wrapper { display: flex; align-items: center; gap: 15px; overflow: hidden; width: 100%; }
         .ticker-badge { background-color: var(--primary-red); color: white; padding: 3px 10px; border-radius: 4px; font-weight: 700; font-size: 0.72rem; text-transform: uppercase; white-space: nowrap; }
@@ -47,7 +48,8 @@
         .lang-switch { display: flex; background: #F1F5F9; border-radius: 8px; padding: 2px; border: 1px solid var(--border-color); }
         .lang-switch button { background: transparent; border: none; padding: 5px 10px; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 0.75rem; color: var(--text-muted); }
         .lang-switch button.active { background: white; color: var(--primary-navy); box-shadow: var(--shadow-sm); }
-        .btn-portal { background: var(--primary-navy); color: white; padding: 10px 18px; border-radius: 8px; font-weight: 700; font-size: 0.85rem; border: none; cursor: pointer; display: flex; align-items: center; gap: 8px; text-decoration: none; }
+        .btn-portal { background: var(--primary-navy); color: white; padding: 10px 18px; border-radius: 8px; font-weight: 700; font-size: 0.85rem; border: none; cursor: pointer; display: flex; align-items: center; gap: 8px; text-decoration: none; transition: background 0.2s; }
+        .btn-portal:hover { background: var(--navy-light); }
 
         /* Hero Section */
         .hero { padding: 90px 5% 70px; text-align: center; background: radial-gradient(circle at center, #FFF1F1 0%, #FFFFFF 70%); }
@@ -56,10 +58,14 @@
         .hero h2 span { color: var(--primary-red); }
         .hero p { color: var(--text-muted); font-size: 1.1rem; max-width: 700px; margin: 0 auto 35px; }
         .hero-btns { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-        .btn-main { background: var(--primary-red); color: white; padding: 15px 28px; border-radius: 10px; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 10px; border: none; cursor: pointer; font-size: 0.95rem; }
-        .btn-dark { background: var(--primary-navy); color: white; padding: 15px 28px; border-radius: 10px; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 10px; border: none; cursor: pointer; font-size: 0.95rem; }
+        
+        .btn-main { background: var(--primary-red); color: white; padding: 15px 28px; border-radius: 10px; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 10px; border: none; cursor: pointer; font-size: 0.95rem; transition: background 0.2s; }
+        .btn-main:hover { background: var(--primary-red-dark); }
+        
+        .btn-dark { background: var(--primary-navy); color: white; padding: 15px 28px; border-radius: 10px; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 10px; border: none; cursor: pointer; font-size: 0.95rem; transition: background 0.2s; }
+        .btn-dark:hover { background: var(--navy-light); }
 
-        /* General Section Layout */
+        /* Section Layout Helpers */
         .section-tag { color: var(--primary-red); font-weight: 700; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; text-align: center; }
         .section-heading { font-size: 2.3rem; color: var(--primary-navy); font-weight: 800; margin-bottom: 10px; text-align: center; }
         .section-subtext { color: var(--text-muted); font-size: 1rem; margin-bottom: 50px; text-align: center; }
@@ -67,14 +73,15 @@
         /* Services Grid */
         .services-section { padding: 90px 5%; background: #FFFFFF; }
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
-        .service-card { background: #FFFFFF; border: 1px solid var(--border-color); padding: 35px 30px; border-radius: 16px; text-align: left; transition: 0.3s; }
+        .service-card { background: #FFFFFF; border: 1px solid var(--border-color); padding: 35px 30px; border-radius: 16px; text-align: left; transition: all 0.3s ease; }
         .service-card:hover { border-color: var(--primary-red); transform: translateY(-5px); box-shadow: var(--shadow-lg); }
         .service-icon { width: 60px; height: 60px; background: #FFEAEA; color: var(--primary-red); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 20px; }
 
         /* Clients Section */
         .clients-section { padding: 90px 5%; background: var(--bg-light); }
         .clients-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
-        .client-box { background: white; padding: 25px; border-radius: 12px; border: 1px solid var(--border-color); text-align: center; }
+        .client-box { background: white; padding: 25px; border-radius: 12px; border: 1px solid var(--border-color); text-align: center; transition: box-shadow 0.2s; }
+        .client-box:hover { box-shadow: var(--shadow-sm); }
         .client-box h3 { font-size: 1.05rem; color: var(--primary-navy); font-weight: 800; margin-bottom: 5px; }
         .client-box p { font-size: 0.82rem; color: var(--text-muted); font-weight: 600; }
 
@@ -83,6 +90,8 @@
         .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
         .review-card { background: #FFFFFF; border: 1px solid var(--border-color); border-radius: 16px; padding: 35px; text-align: left; }
         .stars { color: #F59E0B; margin-bottom: 15px; }
+        .author h4 { font-size: 0.95rem; color: var(--primary-navy); margin-top: 15px; font-weight: 800; }
+        .author span { font-size: 0.8rem; color: var(--text-muted); }
 
         /* Contact Section */
         .contact-section { padding: 90px 5%; background: var(--bg-light); }
@@ -91,18 +100,23 @@
         .map-box iframe { width: 100%; height: 320px; border: 0; border-radius: 12px; margin-top: 5px; }
         .form-group { margin-bottom: 20px; text-align: left; }
         .form-group label { display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 8px; color: var(--primary-navy); }
-        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px 16px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 0.92rem; outline: none; background: #FAFAFA; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px 16px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 0.92rem; outline: none; background: #FAFAFA; transition: border-color 0.2s; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--primary-red); background: #FFFFFF; }
 
-        /* Modal & Floating WA */
+        /* Modal & Floating WhatsApp */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.7); z-index: 2000; justify-content: center; align-items: center; padding: 20px; }
         .modal-content { background: white; padding: 40px; border-radius: 20px; max-width: 500px; width: 100%; position: relative; }
-        .close-modal { position: absolute; top: 20px; right: 20px; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); background: #F1F5F9; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-        .wa-float { position: fixed; bottom: 30px; right: 30px; background: var(--whatsapp-green); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; text-decoration: none; z-index: 1000; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4); }
+        .close-modal { position: absolute; top: 20px; right: 20px; font-size: 1.2rem; cursor: pointer; color: var(--text-muted); background: #F1F5F9; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+        .close-modal:hover { background: #E2E8F0; }
+        
+        .wa-float { position: fixed; bottom: 30px; right: 30px; background: var(--whatsapp-green); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; text-decoration: none; z-index: 1000; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4); transition: transform 0.2s; }
+        .wa-float:hover { transform: scale(1.05); }
 
         @media(max-width: 900px) { nav { display: none; } .hero h2 { font-size: 2.3rem; } .contact-container { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
+
     <div class="top-ticker">
         <div class="ticker-wrapper">
             <span class="ticker-badge">Live Updates</span>
@@ -116,7 +130,7 @@
     </div>
 
     <header>
-        <a href="index.html" class="brand">
+        <a href="#index.html" class="brand">
             <div class="brand-logo"><i class="fa-solid fa-industry"></i></div>
             <div class="brand-info">
                 <h1>PINDARI ENTERPRISES</h1>
@@ -137,7 +151,7 @@
                 <button id="btn-hi" onclick="switchLang('hi')">हिंदी</button>
                 <button id="btn-mr" onclick="switchLang('mr')">मराठी</button>
             </div>
-            <a href="portal.html" class="btn-portal"><i class="fa-solid fa-right-to-bracket"></i> <span id="btn-portal-text">Portal Login</span></a>
+            <a href="#portal" class="btn-portal" onclick="alert('Portal Login Section below')"><i class="fa-solid fa-right-to-bracket"></i> <span id="btn-portal-text">Portal Login</span></a>
         </div>
     </header>
 
@@ -244,7 +258,7 @@
 
     <div class="modal" id="actionModal">
         <div class="modal-content">
-            <span class="close-modal" onclick="closeModal()">×</span>
+            <span class="close-modal" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></span>
             <h3 id="modalTitle" style="margin-bottom: 20px; color: var(--primary-navy); font-weight: 800;">Registration Desk</h3>
             <form onsubmit="handleFormSubmit(event)">
                 <div class="form-group"><label>Full Name</label><input type="text" placeholder="Enter Full Name" required></div>
